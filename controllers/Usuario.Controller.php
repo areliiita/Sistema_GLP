@@ -29,6 +29,7 @@ class UsuarioController{
         require_once'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/guardar_usuario.php';
+            require_once 'cdn/footer.php';
 
     }
 
@@ -57,6 +58,7 @@ class UsuarioController{
         require_once'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/consultar_usuario.php';
+        require_once 'cdn/footer.php';
 
     }
 
@@ -71,6 +73,7 @@ class UsuarioController{
         require_once'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/modificar_usuario.php';
+        require_once 'cdn/footer.php';
 
     }
 

@@ -24,6 +24,7 @@ class SacerdoteController{
         require_once 'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/guardar_sacerdote.php';
+        require_once 'cdn/footer.php';
 
     }
 
@@ -41,7 +42,6 @@ class SacerdoteController{
         $sacerdote->periodo_hasta = $_REQUEST['txtPeriodo_hasta'];
 
         $sacerdote->idsacerdote > 0
-
             ? $this->model->modificarSacerdote($sacerdote)
             : $this->model->guardarSacerdote($sacerdote);
         header('Location: index.php?c=Sacerdote&a=Consultar');
@@ -53,6 +53,7 @@ class SacerdoteController{
         require_once 'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/consultar_sacerdotes.php';
+        require_once 'cdn/footer.php';
 
     }
 
@@ -67,6 +68,7 @@ class SacerdoteController{
         require_once 'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/modificar_sacerdote.php';
+        require_once 'cdn/footer.php';
 
     }
 
