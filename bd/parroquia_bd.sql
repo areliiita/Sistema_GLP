@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2021 a las 07:02:03
+-- Tiempo de generación: 09-10-2021 a las 04:10:30
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -45,10 +45,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_modificar_usuario` (IN `val_nomb
     SELECT concat('ID: ', val_idusuario, ' modifcado.') as resultado;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_obtener_sacerdote` (IN `val_idsacerdote` INT)  BEGIN	
-	SELECT * FROM sacerdote WHERE idsacerdote = val_idsacerdote;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ps_obtener_usuario` (IN `val_idusuario` INT)  BEGIN	
 	SELECT * FROM usuario WHERE idusuario = val_idusuario;
 END$$
@@ -73,13 +69,19 @@ CREATE TABLE `agenda_bautismo` (
   `nombre_padrino` varchar(200) NOT NULL,
   `nombre_madrina` varchar(200) NOT NULL,
   `nombre_padrino3` varchar(200) NOT NULL,
-  `codigo_libro` varchar(10) NOT NULL,
   `codigo_folio` varchar(10) NOT NULL,
   `numero_de_acta` varchar(10) NOT NULL,
   `nombre_ministro` int(10) NOT NULL,
-  `hijo_legitimo` varchar(11) NOT NULL,
-  `hijo_ilegitimo` varchar(11) NOT NULL
+  `hijo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `agenda_bautismo`
+--
+
+INSERT INTO `agenda_bautismo` (`idbautismo`, `nombre_parroquia`, `fecha_bautismo`, `nombre_bautizado`, `fecha_nacimiento`, `nombre_hospitaldenacimiento`, `nombre_padre`, `nombre_madre`, `nombre_padrino`, `nombre_madrina`, `nombre_padrino3`, `codigo_folio`, `numero_de_acta`, `nombre_ministro`, `hijo`) VALUES
+(2, 1, '2021-11-05', 'Lilian Elizabeth', '2021-10-12', 'hospital', 'papa', 'mama', 'padrino', 'madrina', 'padrino3', '3', '1', 1, 'Hijo Legitimo'),
+(5, 1, '2021-10-21', 'Lilian Elizabeth Zabaleta', '2021-10-26', 'hospital', 'papa', 'mama', 'padrino', 'madrina', 'padrino3', '3', '1', 1, 'Hijo Legitimo');
 
 -- --------------------------------------------------------
 
@@ -179,6 +181,13 @@ CREATE TABLE `parroquia` (
   `encargado` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `parroquia`
+--
+
+INSERT INTO `parroquia` (`id_parroquia`, `nombre_parroquia`, `direccion`, `departamento`, `email`, `telefono`, `encargado`) VALUES
+(1, 'San Antonio', 'Direccion', 'Ilobasco', 'liliazavaleta17@gmail.com', 61198765, 'Salvador');
+
 -- --------------------------------------------------------
 
 --
@@ -202,8 +211,7 @@ CREATE TABLE `sacerdote` (
 --
 
 INSERT INTO `sacerdote` (`idsacerdote`, `nombre`, `apellido`, `cargo`, `fecha_nacimiento`, `dui`, `nacionalidad`, `periodo_desde`, `periodo_hasta`) VALUES
-(1, 'Salvador ', 'Candelario', 'Parroco', '1979-01-09', '234567-09', 'El Salvador', 'Enero 2010', 'Actualmente'),
-(6, 'Salvador Salvador', 'Candelario', 'Parroco', '0000-00-00', '', '', '', '');
+(1, 'Salvador Salvador', 'Candelario', 'Parroco', '1979-01-09', '234567-09', 'El Salvador', 'Enero 2010', 'Actualmente');
 
 -- --------------------------------------------------------
 
@@ -226,7 +234,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `apellido`, `telefono`, `email`, `clave`, `rol`) VALUES
-(15, 'Lilian', 'Zabaleta', 71381009, 'liliazavaleta17@gmail.com', '31e10abc4f418ed16ed9e646f5c0bee7', 1);
+(1, 'Lilian Elizabeth', 'Zabaleta Ceren', 61198724, 'liliazavaleta17@gmail.com', '31e10abc4f418ed16ed9e646f5c0bee7', 1),
+(2, 'Lilian Elizabeth marbella', 'Zabaleta ceren', 61198765, 'liliazavaleta17@gmail.com', '9d5e3ecdeb4cdb7acfd63075ae046672', 1);
 
 --
 -- Índices para tablas volcadas
@@ -238,8 +247,7 @@ INSERT INTO `usuario` (`idusuario`, `nombre`, `apellido`, `telefono`, `email`, `
 ALTER TABLE `agenda_bautismo`
   ADD PRIMARY KEY (`idbautismo`),
   ADD KEY `nombre_parroquia` (`nombre_parroquia`),
-  ADD KEY `nombre_ministro` (`nombre_ministro`),
-  ADD KEY `idbautismo` (`idbautismo`);
+  ADD KEY `nombre_ministro` (`nombre_ministro`);
 
 --
 -- Indices de la tabla `agenda_confirmacion`
@@ -293,7 +301,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `agenda_bautismo`
 --
 ALTER TABLE `agenda_bautismo`
-  MODIFY `idbautismo` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `idbautismo` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `agenda_confirmacion`
@@ -317,7 +325,7 @@ ALTER TABLE `agenda_primeracomunion`
 -- AUTO_INCREMENT de la tabla `parroquia`
 --
 ALTER TABLE `parroquia`
-  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `sacerdote`
@@ -329,7 +337,7 @@ ALTER TABLE `sacerdote`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idusuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
