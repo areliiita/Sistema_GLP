@@ -89,13 +89,12 @@ class Sacerdote
 		}
 	}
 
-
 	public function obtenersacerdote($id)
 	{
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("CALL ps_obtener_sacerdote(?)");
+			          ->prepare("SELECT * FROM sacerdote WHERE idsacerdote=?");
 
 			$stm->execute(array($id));
 
@@ -116,7 +115,7 @@ public function eliminarsacerdote($id){
 	try
 	{
 		$stm = $this->pdo
-			          ->prepare("delete from sacerdote where idsacerdote=?");
+			          ->prepare("DELETE  from sacerdote where idsacerdote=?");
 
 			$stm->execute(array($id));
 
@@ -182,13 +181,6 @@ public function buscarSacerdote($id)
 			die($e->getMessage());
 		}
 	}
-
-
-
-
-
-
-
 
 
 	public function listarsacerdote()
