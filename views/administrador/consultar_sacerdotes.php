@@ -1,21 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<title>Consultar_Sacerdote</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <head>
-
-</head>
-<body>
-|</body>
-</head>
-<body>
-
-
-
-
 <!-- Content page -->
 <div class="container-fluid">
 			<div class="page-header">
@@ -108,6 +90,3 @@
 		    </div>
 	  	</div>
 	</div>
-	
-</body>
-</html>

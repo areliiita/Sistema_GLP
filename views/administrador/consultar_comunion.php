@@ -1,25 +1,7 @@
-<?php 
-
-require('../cdn/cdn.php');
-require('Menu.php');
-require('Menu_dasboard.php');
- ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<title>Consultar_Comunion</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <head>
-
-</head>
-
-<body>
 <!-- Content page -->
 <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL  DE REGISTROS DE PRIMERA COMUNIÓN</h1>
+			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL DE COMUNIONES </h1>
 			</div>
 			<p class="lead"></p>
 		</div>
@@ -38,16 +20,26 @@ require('Menu_dasboard.php');
 									<thead>
 										<tr>
 											<th class="text-center">N°</th>
-											<th class="text-center">Ministro</th>
-											<th class="text-center">Jurisdicción</th>
-											<th class="text-center">Año</th>
-											<th class="text-center">Nombre_Novio</th>
-											<th class="text-center">Nombre_Novia</th>
-											<th class="text-center">Testigo1 Novia </th>
-											<th class="text-center">Testigo1 Novio</th>
+											<th class="text-center">Nombre</th>
+											<th class="text-center">Apellidos</th>
+											<th class="text-center">Fecha_de_Nacimiento</th>
+											<th class="text-center">Domicilio</th>
+											<th class="text-center">Email</th>
+											<th class="text-center">Nombre_de_Papa </th>
+											<th class="text-center">Nombre_de_Mama</th>
+											<th class="text-center">Parroqioa_de_Bautismo</th>
+											<th class="text-center">Fecha_Bautismo</th>
+											<th class="text-center">Libro</th>
+											<th class="text-center">Folio</th>
+											<th class="text-center">Numero</th>
+											<th class="text-center">Fecha_Confesión</th>
+											<th class="text-center">Fecha_Comunión</th>
+											<th class="text-center">Catequista</th>
+											<th class="text-center">Celebrante_de_Comunión</th>
 											<th class="text-center">Editar</th>
 											<th class="text-center">Eliminar</th>
 											<th class="text-center">Imprimir</th>
+
                                            
 										</tr>
 									</thead>
@@ -105,5 +97,3 @@ require('Menu_dasboard.php');
 	  	</div>
 	</div>
 	
-</body>
-</html>

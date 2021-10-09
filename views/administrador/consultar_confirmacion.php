@@ -1,28 +1,7 @@
-<?php 
-
-require('../cdn/cdn.php');
-require('Menu.php');
-require('Menu_dasboard.php');
- ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<title>Consultar_Confirmaciones</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <head>
-
-</head>
-<body>
-
-</body>
-</head>
-<body>
 <!-- Content page -->
 <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL DE CONFIRMACIONES </h1>
+			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL  DE REGISTROS DE CONFIRMACIÓN</h1>
 			</div>
 			<p class="lead"></p>
 		</div>
@@ -41,32 +20,55 @@ require('Menu_dasboard.php');
 									<thead>
 										<tr>
 											<th class="text-center">N°</th>
-											<th class="text-center">Ministro</th>
-											<th class="text-center">Jurisdicción</th>
-											<th class="text-center">Año</th>
-											<th class="text-center">Nombre_Novio</th>
-											<th class="text-center">Nombre_Novia</th>
-											<th class="text-center">Testigo1 Novia </th>
-											<th class="text-center">Testigo1 Novio</th>
+											<th class="text-center">Nombre</th>
+											<th class="text-center">Apellidos</th>
+											<th class="text-center">Sexo</th>
+											<th class="text-center">Lugar de Confirmación</th>
+											<th class="text-center">Fecha_de_Nacimiento</th>
+											<th class="text-center">Nombre_del_Papa </th>
+											<th class="text-center">Nombre_de_Mama</th>
+											<th class="text-center">Nombre_de_Padrino</th>
+											<th class="text-center">Nombre_de_Madrina</th>
+											<th class="text-center">Nombre_de_Ministro</th>
+											<th class="text-center">Fecha_de_Confirmación</th>
+											<th class="text-center">Fecha_de_Bautismo</th>
+											<th class="text-center">Parroquia_de_Bautismo</th>
+											<th class="text-center">Diosesis</th>
+											<th class="text-center">Año_de_Bautismo</th>
+											<th class="text-center">Libro</th>
+											<th class="text-center">Folio</th>
+											<th class="text-center">Numero</th>
 											<th class="text-center">Editar</th>
 											<th class="text-center">Eliminar</th>
 											<th class="text-center">Imprimir</th>
-                                           
+											<th class="text-center">PDF</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>Salvador</td>
-											<td>Ilobasco</td>
-											<td>23/01/2017</td>
-											<td>Julio Cesar</td>
-											<td>Emma Fatima</td>
-											<td>Testigo1</td>
-                                            <td>Testigo1</td>
-											<td><a href="#!" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                            <td><a href="" class="btn btn-info btn-raised btn-xs"><i class="fas fa-print"></i></a></td>
+										<td><?php echo $r->idconfirmacion; ?></td>
+										<td><?php echo $r->nombre; ?></td>
+										<td><?php echo $r->apellido; ?></td>
+										<td><?php echo $r->sexo; ?></td>
+										<td><?php echo $r->confirmado_otro_lugar; ?></td>
+										<td><?php echo $r->fecha_nacimiento; ?></td>
+										<td><?php echo $r->nombre_padre; ?></td>
+										<td><?php echo $r->nombre_madre; ?></td>
+										<td><?php echo $r->nombre_padrino; ?></td>
+										<td><?php echo $r->nombre_madrina; ?></td>
+										<td><?php echo $r->ministro; ?></td>
+										<td><?php echo $r->fecha_confirmacion; ?></td>
+										<td><?php echo $r->fecha_bautismo; ?></td>
+										<td><?php echo $r->parroquia_bautismo; ?></td>
+										<td><?php echo $r->diosesis; ?></td>
+										<td><?php echo $r->año_bautismo; ?></td>
+										<td><?php echo $r->libro; ?></td>
+										<td><?php echo $r->folio; ?></td>
+										<td><?php echo $r->numero; ?></td>
+										<td><a href="?c=Confirmacion&Modificar" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										<td><a href="?c=Confirmacion&Modificar" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+                                         <td><a href="" class="btn btn-info btn-raised btn-xs"><i class="fas fa-print"></i></a></td>
+                                          <td><a href="" class="btn btn-info btn-raised btn-xs"><i class="fas fa-print"></i></a></td>
                                         </tr>
 									
 									</tbody>
@@ -107,6 +109,3 @@ require('Menu_dasboard.php');
 		    </div>
 	  	</div>
 	</div>
-	
-</body>
-</html>

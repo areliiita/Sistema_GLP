@@ -1,3 +1,4 @@
+<body>
 <section class="full-box cover dashboard-sideBar">
 		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
 		<div class="full-box dashboard-sideBar-ct">
@@ -102,7 +103,6 @@
 				</li>
 					</ul>
 				</li>
-
 
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">

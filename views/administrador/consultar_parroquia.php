@@ -1,24 +1,4 @@
-<?php 
 
-require('../cdn/cdn.php');
-require('Menu.php');
-require('Menu_dasboard.php');
- ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<title>Consultar_Parroquia</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <head>
-
-</head>
-<body>
-
-</body>
-</head>
-<body>
 <!-- Content page -->
 <div class="container-fluid">
 			<div class="page-header">
@@ -30,11 +10,11 @@ require('Menu_dasboard.php');
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px; background-color: #0088b6">
-					  	
+
 		<li class="bg-primary"><a href="#listPeriod"  data-toggle="tab"><i class="zmdi zmdi-time-restore"></i> Informe General</a></li>
 					</ul>
 					<div class="tab-content">
-					  	
+
 					  	<div class="tab-pane fade" id="listPeriod">
 							<div class="table-responsive">
 								<table class="table table-hover text-center">
@@ -50,24 +30,24 @@ require('Menu_dasboard.php');
 											<th class="text-center">Editar</th>
 											<th class="text-center">Eliminar</th>
 											<th class="text-center">Imprimir</th>
-                                           
 										</tr>
 									</thead>
 									<tbody>
+									<?php foreach($this->model->listarParroquia() as $r): ?>
 										<tr>
-											<td>1</td>
-											<td>San Antonio de Padua</td>
-											<td></td>
-											<td>La paz</td>
-											<td>sanantoniodepadua@gmail.com</td>
-											<td>2280665</td>
-											<td>Parroco Salvador</td>
-											<td><a href="#!" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+											<td><?php echo $r->id_parroquia; ?></td>
+											<td><?php echo $r->nombre_parroquia; ?></td>
+											<td><?php echo $r->direccion; ?></td>
+											<td><?php echo $r->departamento; ?></td>
+											<td><?php echo $r->email; ?></td>
+											<td><?php echo $r->telefono; ?></td>
+											<td><?php echo $r->encargado; ?></td>
+
+											<td><a href="?c=Parroquia&a=Modificar&id=<?php echo $r->id_parroquia; ?>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td><a href="?c=Parroquia&a=Eliminar&id=<?php echo $r->id_parroquia; ?>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
                                             <td><a href="" class="btn btn-info btn-raised btn-xs"><i class="fas fa-print"></i></a></td>
                                         </tr>
-									
-									</tbody>
+									<?php endforeach; ?></tbody></tbody>
 								</table>
 								<ul class="pagination pagination-sm">
 								  	<li class=""><a href="#!">«</a></li>
@@ -105,6 +85,3 @@ require('Menu_dasboard.php');
 		    </div>
 	  	</div>
 	</div>
-	
-</body>
-</html>

@@ -4,23 +4,12 @@
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>Sistema de Gestión de Libros Parroquiales</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="shortcut icon" type="../image/x-icon" href="assets/img/icono.png">
-     <link href="./fonts/css/fontawesome.css" rel="stylesheet">
-    <link href="./fonts/css/brands.css" rel="stylesheet">
-    <link href="./fonts/css/solid.css" rel="stylesheet">
-</head>
-<body>
         <!-- Content page -->
         <div class="container-fluid">
             <div class="page-header">
-              <h1 class="text-titles"> TOTAL DE REGISTROS <small></small></h1>
+              <h1 class="text-center"> TOTAL DE REGISTROS <small></small></h1>
             </div>
         </div>
         <div class="full-box text-center" style="padding: 30px 10px;">
@@ -29,7 +18,7 @@
                     BAUTISMOS
                 </div>
                 <div class="full-box tile-icon text-center blue">
-                <a href="?c=Bautismo&a=Concultar"><img src="./assets/img/bautizo.jpeg" alt="" style="height: 120px; margin-top: 5px;"></a>
+                <a href="?c=Bautismo&a=Consultar"><img src="./assets/img/bautizo.jpeg" alt="" style="height: 120px; margin-top: 5px;"></a>
                 </div>
                 <div class="full-box tile-number text-titles">
                     <p class="full-box">7</p>

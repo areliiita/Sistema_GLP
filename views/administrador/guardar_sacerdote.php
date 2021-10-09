@@ -1,17 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>F-R SACERDOTE</title>
-
-</head>
-<body>
-
 		<section class="full-width header-well">
 			<div class="full-width header-well-icon">
-				<i class="fas fa-address-card" style="width: 60px; margin-left: 100px; margin-top: 50px; height: 50px;"></i>
+						<i class="zmdi zmdi-accounts"></i>
 			</div>
 			<div class="full-width header-well-text">
 				<p class="text-condensedLight">
@@ -26,7 +15,7 @@
 			<div class="mdl-cell mdl-cell--12-col">
 				<div class="full-width panel mdl-shadow--2dp">
 					<div class="full-width panel-tittle bg-primary text-center tittles">
-						<i class="zmdi zmdi-border-color"></i> Ingrese los registros 
+						<i class="zmdi zmdi-border-color"></i> Nuevo Sacerdote
 					</div>
 					<div class="full-width panel-content">
 						<form method="post" action="?c=Sacerdote&a=Guardar">
@@ -99,5 +88,3 @@
 		</div>
 	</section>
 
-</body>
-</html>

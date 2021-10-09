@@ -1,17 +1,8 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>F-R SACERDOTE</title>
-
-</head>
-<body>
 
 		<section class="full-width header-well">
 			<div class="full-width header-well-icon">
-				<i class="fas fa-address-card" style="width: 60px; margin-left: 100px; margin-top: 50px; height: 50px;"></i>
+					<i class="zmdi zmdi-accounts"></i>
 			</div>
 			<div class="full-width header-well-text">
 				<p class="text-condensedLight">
@@ -26,7 +17,7 @@
 			<div class="mdl-cell mdl-cell--12-col">
 				<div class="full-width panel mdl-shadow--2dp">
 					<div class="full-width panel-tittle bg-primary text-center tittles">
-						<i class="zmdi zmdi-border-color"></i> Ingrese los registros
+						<i class="zmdi zmdi-border-color"></i> Modificar los registros
 					</div>
 					<div class="full-width panel-content">
 						<form method="post" action="?c=Sacerdote&a=Guardar" enctype="multipart/form-data">
@@ -91,7 +82,7 @@
 			</div>
 </div>
 	<p class="text-center">
-	<button href="#!"  type="submit" class="btn btn bg-primary btn-raised btn-md"><i class="zmdi zmdi-floppy" id="btn-addCompany"></i> GUARDAR</button>
+	<button href="#!"  type="submit" class="btn btn bg-primary btn-raised btn-md"><i class="zmdi zmdi-floppy" id="btn-addCompany"></i> MODIFICAR</button>
 	</p>
 </form>
 
@@ -100,6 +91,3 @@
 			</div>
 		</div>
 	</section>
-
-</body>
-</html>
