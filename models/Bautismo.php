@@ -13,7 +13,6 @@ class Bautismo
     public $nombre_madrina;
     public $nombre_padrino3;
     public $codigo_folio;
-    public $numero_de_acta;
     public $nombre_ministro;
     public $hijo;
 
@@ -39,7 +38,7 @@ class Bautismo
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare(" INSERT INTO `agenda_bautismo`(nombre_parroquia, fecha_bautismo, nombre_bautizado, fecha_nacimiento, nombre_hospitaldenacimiento, nombre_padre, nombre_madre, nombre_padrino, nombre_madrina, nombre_padrino3, codigo_folio, numero_de_acta, nombre_ministro, hijo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			          ->prepare(" INSERT INTO `agenda_bautismo`(nombre_parroquia, fecha_bautismo, nombre_bautizado, fecha_nacimiento, nombre_hospitaldenacimiento, nombre_padre, nombre_madre, nombre_padrino, nombre_madrina, nombre_padrino3, codigo_folio, nombre_ministro, hijo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			$stm->execute(array(
                                     $data->nombre_parroquia,
@@ -53,7 +52,6 @@ class Bautismo
 									$data->nombre_madrina,
 									$data->nombre_padrino3,
 									$data->codigo_folio,
-									$data->numero_de_acta,
 									$data->nombre_ministro,
                                     $data->hijo
                 				));
@@ -79,7 +77,7 @@ class Bautismo
 		$stm=$this->pdo->prepare("UPDATE agenda_bautismo SET nombre_parroquia = ?, fecha_bautismo = ?,
 			nombre_bautizado = ?, fecha_nacimiento = ?, nombre_hospitaldenacimiento = ?, nombre_padre = ?,
 			nombre_madre = ?, nombre_padrino = ?, nombre_madrina = ?, nombre_padrino3 = ?, codigo_folio = ?,
-			numero_de_acta = ?, nombre_ministro = ?,  hijo = ? WHERE idbautismo = ?");
+			 nombre_ministro = ?,  hijo = ? WHERE idbautismo = ?");
 
 			$stm->execute(
 				    array(
@@ -94,7 +92,6 @@ class Bautismo
 							$data->nombre_madrina,
 							$data->nombre_padrino3,
 							$data->codigo_folio,
-							$data->numero_de_acta,
 							$data->nombre_ministro,
 							$data->hijo,
                             $data->idbautismo
@@ -182,38 +179,13 @@ public function buscarBautismos($id)
 
 
 
-
-	public function obtenersacerdote1($nombre)
-	{
-		try
-		{
-			$stm = $this->pdo
-			          ->prepare("CALL ps_obtener_sacerdote1(?)");
-
-
-			$stm->execute(array($id));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
-		}
-        catch (Throwable $t)//php7
-        {
-			die($t->getMessage());
-        }
-		catch(Exception $e)//php5
-		{
-			die($e->getMessage());
-		}
-	}
-
-
-
-
 	public function listarbautismo()
 	{
 		try
 		{
 
-		$stm = $this->pdo->prepare("SELECT  b.idbautismo, p.nombre_parroquia, b.fecha_bautismo, b.nombre_bautizado, b.fecha_nacimiento, b.nombre_hospitaldenacimiento, b.nombre_padre, b.nombre_madre, b.nombre_padrino, b.nombre_madrina, b.nombre_padrino3, b.codigo_folio, b.numero_de_acta, s.nombre as nombre_ministro,  b.hijo  from agenda_bautismo
+		$stm = $this->pdo->prepare("SELECT  b.idbautismo, p.nombre_parroquia, b.fecha_bautismo, b.nombre_bautizado, b.fecha_nacimiento, b.nombre_hospitaldenacimiento, b.nombre_padre, b.nombre_madre, b.nombre_padrino, b.nombre_madrina, b.nombre_padrino3, b.codigo_folio,
+		    s.nombre as nombre_ministro,  b.hijo  from agenda_bautismo
 			as b inner join sacerdote as s on s.idsacerdote = b.nombre_ministro
             inner join parroquia as p on p.id_parroquia  = b.nombre_parroquia;");
 			$stm->execute();

@@ -62,7 +62,7 @@ class Parroquia
 	{
 		try
 		{
-			$stm=$this->pdo->prepare("UPDATE parroquia SET nombre_parroquia = ?, direccion = ?, departamento = ?, email = ?, telefono = ?, encargado = ?");
+			$stm=$this->pdo->prepare("UPDATE parroquia SET nombre_parroquia = ?, direccion = ?, departamento = ?, email = ?, telefono = ?, encargado = ? WHERE id_parroquia = ?");
 
 			$stm->execute(
 				    array(
@@ -71,7 +71,8 @@ class Parroquia
                                     $data->departamento,
                                     $data->email,
                                     $data->telefono,
-                                    $data->encargado
+                                    $data->encargado,
+                                    $data->id_parroquia
 					));
 
 					return $stm->fetch(PDO::FETCH_OBJ);
