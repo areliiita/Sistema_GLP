@@ -43,7 +43,6 @@ class BautismoController{
         $bautismo->nombre_madrina = $_REQUEST['txtNombre_madrina'];
         $bautismo->nombre_padrino3 = $_REQUEST['txtNombre_padrino3'];
         $bautismo->codigo_folio = $_REQUEST['txtCodigo_folio'];
-        $bautismo->numero_de_acta = $_REQUEST['txtN°_de_acta'];
         $bautismo->nombre_ministro = $_REQUEST['txtNombre_de_ministro'];
         $bautismo->hijo = $_REQUEST['txtHijo'];
 

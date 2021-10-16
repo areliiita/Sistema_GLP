@@ -44,7 +44,13 @@ class SacerdoteController{
         $sacerdote->idsacerdote > 0
             ? $this->model->modificarSacerdote($sacerdote)
             : $this->model->guardarSacerdote($sacerdote);
-        header('Location: index.php?c=Sacerdote&a=Consultar');
+
+         echo'<script type="text/javascript">
+    alert("Registro Guardado");
+    window.location.href="index.php?c=Sacerdote&a=Consultar";
+    </script>';
+
+
 
     }
 
@@ -77,8 +83,10 @@ class SacerdoteController{
 
          if(isset($_REQUEST['id'])){
             $sacerdote = $this->model->eliminarsacerdote($_REQUEST['id']);
-                echo "<script>alert('eliminado');</script>";
-                  header('Location: index.php?c=Sacerdote&a=Consultar');
+                echo'<script type="text/javascript">
+    alert("Registro Eliminado");
+    window.location.href="index.php?c=Sacerdote&a=Consultar";
+    </script>';
 
             }
          }
