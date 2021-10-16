@@ -31,6 +31,22 @@ $modeloParroquia = new Parroquia();
 								<div class="mdl-grid">
 		<input type="hidden" name="txtIdbautismo" value="<?php echo $bautismo->idbautismo; ?>" />
 
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+				<div class="mdl-textfield mdl-js-textfield">
+				<select class="mdl-textfield__input" name="txtNombre_parroquia" value="<?php echo $bautismo->nombre_parroquia; ?>" >
+				<option value="" disabled="" selected="">Seleccionar Parroquia</option>
+				<?php
+					if ($bautismo->nombre_parroquia !=null) {
+						$objParroquia = $modeloParroquia->obtenerparroquia($bautismo->nombre_parroquia);
+						echo  '<option value="'.$objParroquia->nombre_parroquia.'" selected>'.$objParroquia->nombre_parroquia.'</option>';
+							}else{echo "strring";}
+							 ?>
+						 <?php foreach($modeloParroquia->listarParroquia() as $r): ?>
+ <option value="<?php echo $r->id_parroquia; ?>"><?php echo $r->nombre_parroquia; ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
 
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
@@ -106,22 +122,33 @@ $modeloParroquia = new Parroquia();
 									</div>
 								</div>
 
-								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtN°_de_acta" value="<?php echo $bautismo->numero_de_acta; ?>">
-										<label class="mdl-textfield__label">Ingrese el número de acta.</label>
-									</div>
-								</div>
 
+<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+											<div class="mdl-textfield mdl-js-textfield">
+												<select class="mdl-textfield__input" name="txtNombre_de_ministro" value="<?php echo $bautismo->nombre_ministro; ?>" >
+													<option value="" disabled="" selected="">Seleccionar Ministro</option>
+													<?php
+													if ($bautismo->nombre_ministro !=null) {
+
+													$objSacerdote = $modeloSacerdote->obtenersacerdote($bautismo->nombre_ministro);
+													echo  '<option value="'.$objSacerdote->nombre.'" selected>'.$objSacerdote->nombre.'</option>';
+													}else{echo "string";}
+													 ?>
+													 <?php foreach($modeloSacerdote->listarSacerdote() as $r): ?>
+													 	    <option value="<?php echo $r->idsacerdote; ?>"><?php echo $r->nombre; ?></option>
+													 	    <?php endforeach; ?>
+												</select>
+											</div>
+										</div>
 
 
              <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-							<div class="mdl-textfield mdl-js-textfield">
-								<select class="mdl-textfield__input" name="txtHijo" value="<?php echo $bautismo->hijo; ?>">
-									<option value="" disabled="" selected="">Selecciona Hijo</option>
-									<option value="Hijo Legitimo">Hijo Legitimo</option>
-									<option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
-								</select>
+				<div class="mdl-textfield mdl-js-textfield">
+				<select class="mdl-textfield__input" name="txtHijo" value="<?php echo $bautismo->hijo; ?>">
+				<option value="" disabled="" selected="">Selecciona Hijo</option>
+				<option value="Hijo Legitimo">Hijo Legitimo</option>
+				<option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
+				</select>
 							</div>
 							</div>
 
