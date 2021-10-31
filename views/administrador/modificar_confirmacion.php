@@ -3,6 +3,10 @@ require_once 'models/Sacerdote.php';
 $Sacerdote = new sacerdote();
 $modeloSacerdote = new Sacerdote();
 
+require_once 'models/Obispo.php';
+$Obispo = new Obispo();
+$modeloObispo = new Obispo();
+
 require_once 'models/Parroquia.php';
 $Parroquia = new Parroquia();
 $modeloParroquia = new Parroquia();
@@ -51,12 +55,28 @@ $modeloParroquia = new Parroquia();
 								</div>
 
 
-								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtSexo" value="<?php echo $confirmacion->sexo; ?>">
-										<label class="mdl-textfield__label" for="addressCompany">Ingrese sexo de la persona.</label>
-									</div>
-								</div>
+
+				 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+				<div class="mdl-textfield mdl-js-textfield">
+				<select class="mdl-textfield__input" name="txtSexo" value="<?php echo $confirmacion->sexo; ?>">
+
+					<?php
+						if ($confirmacion->sexo=="Femenino") {
+					?>
+					<option value="Femenino" selected="">Femenino</option>
+					<option value="Masculino">Masculino</option>
+					<?php
+					} else {
+					?>
+					<option value="Femenino">Femenino</option>
+					<option value="Masculino" selected="">Masculino</option>
+					<?php
+						}
+					?>
+				</select>
+							</div>
+							</div>
+
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -102,23 +122,31 @@ $modeloParroquia = new Parroquia();
 									</div>
 								</div>
 
-								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtMinistro" value="<?php echo $confirmacion->ministro; ?>">
-													<option value="" disabled="" selected="">Seleccionar Ministro</option>
-													<?php
-													if ($confirmacion->ministro !=null) {
 
-													$objSacerdote = $modeloSacerdote->obtenersacerdote($confirmacion->ministro);
-													echo  '<option value="'.$objSacerdote->nombre.'" selected>'.$objSacerdote->nombre.'</option>';
-													}else{echo "string";}
-													 ?>
-													 <?php foreach($modeloSacerdote->listarSacerdote() as $r): ?>
-													 	    <option value="<?php echo $r->idsacerdote; ?>"><?php echo $r->nombre; ?></option>
-													 	    <?php endforeach; ?>
+										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+											<div class="mdl-textfield mdl-js-textfield">
+												<select class="mdl-textfield__input" name="txtMinistro" value="<?php echo $confirmacion->ministro; ?>" >
+
+												<?php foreach ($modeloSacerdote->listarSacerdote() as $r):?>
+												<option value="<?php echo $r->idsacerdote; ?>" <?php if($confirmacion->ministro==$r->idsacerdote) echo "selected"; ?> ><?php echo $r->nombre; ?></option>
+												<?php endforeach; ?>
+
 												</select>
 											</div>
 										</div>
+
+										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+											<div class="mdl-textfield mdl-js-textfield">
+												<select class="mdl-textfield__input" name="txtObispo" value="<?php echo $confirmacion->obispo; ?>" >
+
+												<?php foreach ($modeloObispo->listarobispo() as $r):?>
+												<option value="<?php echo $r->idobispo; ?>" <?php if($confirmacion->obispo==$r->idobispo) echo "selected"; ?> ><?php echo $r->nombre; ?></option>
+												<?php endforeach; ?>
+
+												</select>
+											</div>
+										</div>
+
 
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -135,22 +163,17 @@ $modeloParroquia = new Parroquia();
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtParroquia_bautismo"  value="<?php echo $confirmacion->parroquia_bautismo; ?>">
-													<option value="" disabled="" selected="">Seleccionar Parroquia de bautismo</option>
-													<?php
-													if ($confirmacion->parroquia_bautismo !=null) {
+				<div class="mdl-textfield mdl-js-textfield">
+				<select class="mdl-textfield__input" name="txtParroquia_bautismo" value="<?php echo $confirmacion->parroquia_bautismo; ?>" >
+				<?php foreach ($modeloParroquia->listarParroquia() as $r):?>
+					<option value="<?php echo $r->id_parroquia; ?>" <?php if($confirmacion->parroquia_bautismo==$r->id_parroquia) echo "selected"; ?> ><?php echo $r->nombre_parroquia; ?></option>
+				<?php endforeach; ?>
 
-													$objParroquia = $modeloParroquia->obtenerparroquia($confirmacion->parroquia_bautismo);
-													echo  '<option value="'.$objParroquia->nombre_parroquia.'" selected>'.$objParroquia->nombre_parroquia.'</option>';
-													}else{echo "strring";}
-													 ?>
-													 <?php foreach($modeloParroquia->listarParroquia() as $r): ?>
-													 	    <option value="<?php echo $r->id_parroquia; ?>"><?php echo $r->nombre_parroquia; ?></option>
-													 	    <?php endforeach; ?>
-												</select>
-											</div>
-										</div>
+					</select>
+				</div>
+			</div>
+
+
 
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
@@ -167,6 +190,41 @@ $modeloParroquia = new Parroquia();
 										<label class="mdl-textfield__label" for="urlCompany">Ingrese el codigo del folio.</label>
 									</div>
 								</div>
+
+
+								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<input class="mdl-textfield__input" type="int" name="txtEdad" value="<?php echo $confirmacion->edad; ?>">
+										<label class="mdl-textfield__label" for="urlCompany">Ingrese la edad del  confirmado.</label>
+									</div>
+								</div>
+
+
+			 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+			<div class="mdl-textfield mdl-js-textfield">
+			<select class="mdl-textfield__input" name="txtHijo" value="<?php echo $confirmacion->hijo; ?>">
+					<?php
+						if ($confirmacion->hijo=="Hijo Legitimo") {
+					?>
+					<option value="Hijo Legitimo" selected="">Hijo Legitimo</option>
+					<option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
+					<?php
+					} else {
+					?>
+					<option value="Hijo Legitimo">Hijo Legitimo</option>
+					<option value="Hijo Ilegitimo" selected="">Hijo Ilegitimo</option>
+					<?php
+						}
+					?>
+				</select>
+							</div>
+							</div>
+
+
+
+
+
+
 								</div>
 		<p class="text-center">
 			<button href="#!" class="btn btn bg-primary btn-raised btn-md"><i class="zmdi zmdi-floppy" id="btn-addCompany"></i> MODIFICAR</button>
