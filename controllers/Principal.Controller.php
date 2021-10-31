@@ -9,8 +9,10 @@ class PrincipalController{
 
             if ($_SESSION['rol'] == 1) {
 
-                 require'./views/administrador/Menu.php';
+                require 'cdn/links.php';
+                require './views/administrador/Menu.php';
                 require'./views/administrador/Vista_principal.php';
+                require'cdn/scripts.php';
 
             }
 

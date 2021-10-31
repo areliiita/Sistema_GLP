@@ -50,16 +50,20 @@ class ComunionController{
 
             ? $this->model->modificarComunion($comunion)
             : $this->model->guardarComunion($comunion);
-        header('Location: index.php?c=Comunion&a=Consultar');
+
+                      echo'<script type="text/javascript">
+            alert("Registro de Primera Comunión Guardado  Exitosamente");
+             window.location.href="index.php?c=Comunion&a=Consultar";
+            </script>';
 
     }
 
     public function Consultar(){
 
-        require_once 'cdn/cdn.php';
+        require_once 'cdn/links.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/consultar_comunion.php';
-        require_once 'cdn/footer.php';
+        require_once 'cdn/scripts.php';
 
     }
 
@@ -84,11 +88,28 @@ class ComunionController{
          if(isset($_REQUEST['id'])){
             $comunion = $this->model->eliminarComunion($_REQUEST['id']);
 
-                  header('Location: index.php?c=Comunion&a=Consultar');
+        echo'<script type="text/javascript">
+         alert("Registro de Primera Comunion Eliminado Exitosamente");
+        window.location.href="index.php?c=Comunion&a=Consultar";
+        </script>';
 
             }
          }
 
+ public function ConsultarActaComunion(){
+
+ $comunion = new Comunion();
+
+      if(isset($_REQUEST['id'])){
+
+            $comunion = $this->model->obtenercomunion($_REQUEST['id']);
+        }
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/administrador/acta_comunion.php';
+        require_once 'cdn/footer.php';
+
+    }
 
 }
 

@@ -41,8 +41,11 @@ class ParroquiaController{
         $parroquia->id_parroquia > 0
             ? $this->model->modificarParroquia($parroquia)
             : $this->model->guardarParroquia($parroquia);
-        header('Location: index.php?c=Parroquia&a=Consultar');
 
+            echo'<script type="text/javascript">
+             alert("Registro de Parroquia  Guardado Exitosamente");
+             window.location.href="index.php?c=Parroquia&a=Consultar";
+             </script>';
     }
 
 
@@ -76,8 +79,12 @@ class ParroquiaController{
 
          if(isset($_REQUEST['id'])){
             $parroquia = $this->model->eliminarparroquia($_REQUEST['id']);
-                echo "<script>alert('eliminado');</script>";
-                  header('Location: index.php?c=Parroquia&a=Consultar');
+
+               echo'<script type="text/javascript">
+    alert("Registro de Parroquia Eliminado Exitosamente");
+    window.location.href="index.php?c=Parroquia&a=Consultar";
+    </script>';
+
 
             }
          }

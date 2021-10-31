@@ -42,26 +42,33 @@ class ConfirmacionController{
         $confirmacion->nombre_padrino = $_REQUEST['txtNombre_padrino'];
         $confirmacion->nombre_madrina = $_REQUEST['txtNombre_madrina'];
         $confirmacion->ministro = $_REQUEST['txtMinistro'];
+        $confirmacion->obispo = $_REQUEST['txtObispo'];
         $confirmacion->fecha_confirmacion = $_REQUEST['txtFecha_confirmacion'];
         $confirmacion->fecha_bautismo = $_REQUEST['txtFecha_bautismo'];
         $confirmacion->parroquia_bautismo = $_REQUEST['txtParroquia_bautismo'];
         $confirmacion->diosesis = $_REQUEST['txtDiosesis'];
-         $confirmacion->folio = $_REQUEST['txtFolio'];
+        $confirmacion->folio = $_REQUEST['txtFolio'];
+        $confirmacion->edad = $_REQUEST['txtEdad'];
+        $confirmacion->hijo = $_REQUEST['txtHijo'];
 
         $confirmacion->idconfirmacion > 0
 
             ? $this->model->modificarConfirmacion($confirmacion)
             : $this->model->guardarConfirmacion($confirmacion);
-        header('Location: index.php?c=Confirmacion&a=Consultar');
+
+         echo'<script type="text/javascript">
+         alert("Registro de Confirmación Guardado Exitosamente");
+        window.location.href="index.php?c=Confirmacion&a=Consultar";
+        </script>';
 
     }
 
     public function Consultar(){
 
-        require_once 'cdn/cdn.php';
+        require_once 'cdn/links.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/consultar_confirmacion.php';
-        require_once 'cdn/footer.php';
+        require_once 'cdn/scripts.php';
 
     }
 
@@ -86,10 +93,73 @@ class ConfirmacionController{
          if(isset($_REQUEST['id'])){
             $confirmacion = $this->model->eliminarConfirmacion($_REQUEST['id']);
 
-                  header('Location: index.php?c=Confirmacion&a=Consultar');
-
+             echo'<script type="text/javascript">
+            alert("Registro de Confrimación  Eliminado Exitosamente");
+            window.location.href="index.php?c=Confirmacion&a=Consultar";
+            </script>';
             }
    }
+
+
+ public function ConsultarActaConfirmacion(){
+
+ $confrimacion= new Confirmacion();
+      if(isset($_REQUEST['id'])){
+            $confirmacion = $this->model->obtenerconfirmacion($_REQUEST['id']);
+        }
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/administrador/acta_confirmacion.php';
+        require_once 'cdn/footer.php';
+
+    }
+
+
+    public function CrearReporte(){
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/reportes/crear_reporte.php';
+        require_once 'cdn/footer.php';
+    }
+
+
+    public function ConsultarReporteMes(){
+        $confirmacion = new Confirmacion();
+
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/reportes/confirmacion/ver_reportemes.php';
+        require_once 'cdn/footer.php';
+
+    }
+
+    public function ImprimirReporteMes(){
+        $confirmacion = new Confirmacion();
+
+        require_once 'views/reportes/Menu_imprimir.php';
+        require_once 'views/reportes/confirmacion/imprimir_mes.php';
+         require_once 'cdn/footer.php';
+
+    }
+
+    public function ConsultarReporteFechas(){
+        $confirmacion = new Confirmacion();
+
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/reportes/confirmacion/ver_reportefecha.php';
+        require_once 'cdn/footer.php';
+
+    }
+
+
+    public function ImprimirReporteFechas(){
+        $confirmacion = new Confirmacion();
+        require_once 'views/reportes/confirmacion/Menu_imprimir.php';
+        require_once 'views/reportes/confirmacion/imprimir_fechas.php';
+         require_once 'cdn/footer.php';
+
+    }
 
 }
 

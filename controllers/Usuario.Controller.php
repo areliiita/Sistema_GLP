@@ -29,7 +29,7 @@ class UsuarioController{
         require_once'cdn/cdn.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/guardar_usuario.php';
-            require_once 'cdn/footer.php';
+        require_once 'cdn/footer.php';
 
     }
 
@@ -47,7 +47,10 @@ class UsuarioController{
         $usuario->idusuario > 0 
             ? $this->model->modificarUsuario($usuario)
             : $this->model->guardarUsuario($usuario);
-        header('Location: index.php?c=Usuario&a=Consultar');
+             echo'<script type="text/javascript">
+        alert("Registro de Usuario  Guardado Exitosamente");
+        window.location.href="index.php?c=Usuario&a=Consultar";
+    </script>';
 
     }
 
@@ -82,9 +85,12 @@ class UsuarioController{
 
          if(isset($_REQUEST['id'])){
             $usuario = $this->model->eliminarusuario($_REQUEST['id']);
-                echo "<script>alert('eliminado');</script>";
-                  header('Location: index.php?c=Usuario&a=Consultar');
 
+
+          echo'<script type="text/javascript">
+        alert("Registro de Usuario Eliminado Correctamente");
+        window.location.href="index.php?c=Usuario&a=Consultar";
+    </script>';
             }
          }
 

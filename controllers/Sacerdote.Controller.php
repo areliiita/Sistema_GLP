@@ -46,22 +46,19 @@ class SacerdoteController{
             : $this->model->guardarSacerdote($sacerdote);
 
          echo'<script type="text/javascript">
-    alert("Registro Guardado");
+    alert("Registro de Sacerdote  Guardado  Exitosamente");
     window.location.href="index.php?c=Sacerdote&a=Consultar";
     </script>';
-
-
-
     }
 
     public function Consultar(){
-
-        require_once 'cdn/cdn.php';
+        require_once 'cdn/links.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/consultar_sacerdotes.php';
-        require_once 'cdn/footer.php';
+        require_once 'cdn/scripts.php';
 
     }
+
 
      public function Modificar(){
          $sacerdote = new Sacerdote();
@@ -84,7 +81,7 @@ class SacerdoteController{
          if(isset($_REQUEST['id'])){
             $sacerdote = $this->model->eliminarsacerdote($_REQUEST['id']);
                 echo'<script type="text/javascript">
-    alert("Registro Eliminado");
+    alert("Registro de Sacerdote Eliminado Exitosamente");
     window.location.href="index.php?c=Sacerdote&a=Consultar";
     </script>';
 

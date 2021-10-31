@@ -50,16 +50,20 @@ class BautismoController{
 
             ? $this->model->modificarBautismo($bautismo)
             : $this->model->guardarBautismo($bautismo);
-        header('Location: index.php?c=Bautismo&a=Consultar');
+
+              echo'<script type="text/javascript">
+    alert("Registro de Bautismo Guardado Exitosamente");
+    window.location.href="index.php?c=Bautismo&a=Consultar";
+    </script>';
 
     }
 
     public function Consultar(){
 
-        require_once 'cdn/cdn.php';
+        require_once 'cdn/links.php';
         require_once 'views/administrador/Menu.php';
         require_once 'views/administrador/consultar_bautismo.php';
-        require_once 'cdn/footer.php';
+        require_once 'cdn/scripts.php';
 
     }
 
@@ -83,12 +87,56 @@ class BautismoController{
 
          if(isset($_REQUEST['id'])){
             $bautismo = $this->model->eliminarbautismo($_REQUEST['id']);
-                echo "<script>alert('eliminado');</script>";
-                  header('Location: index.php?c=Bautismo&a=Consultar');
+
+              echo'<script type="text/javascript">
+    alert("Registro de Bautismo Eliminado Exitosamente");
+    window.location.href="index.php?c=Bautismo&a=Consultar";
+    </script>';
 
             }
          }
 
+ public function ConsultarActaBautismo(){
+
+ $bautismo = new Bautismo();
+
+      if(isset($_REQUEST['id'])){
+
+            $bautismo = $this->model->obtenerbautismo($_REQUEST['id']);
+        }
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/administrador/acta_bautismo.php';
+        require_once 'cdn/footer.php';
+
+    }
+
+
+ public function CrearReporte(){
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/reportes/crear_reporte.php';
+        require_once 'cdn/footer.php';
+    }
+
+    public function ConsultarReporteMes(){
+        $bautismo = new Bautismo();
+
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/reportes/bautismo/ver_reportemes.php';
+        require_once 'cdn/footer.php';
+
+    }
+
+    public function ConsultarReporteFechas(){
+        $bautismo = new Bautismo();
+
+        require_once 'cdn/cdn.php';
+        require_once 'views/administrador/Menu.php';
+        require_once 'views/reportes/bautismo/ver_reportefecha.php';
+        require_once 'cdn/footer.php';
+    }
 
 }
 
