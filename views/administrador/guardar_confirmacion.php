@@ -3,6 +3,10 @@ require_once 'models/Sacerdote.php';
 $Sacerdote = new sacerdote();
 $modeloSacerdote = new Sacerdote();
 
+require_once 'models/Obispo.php';
+$Obispo = new obispo();
+$modeloObispo = new Obispo();
+
 require_once 'models/Parroquia.php';
 $Parroquia = new Parroquia();
 $modeloParroquia = new Parroquia();
@@ -38,7 +42,7 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre">
+										<input class="mdl-textfield__input" type="text" name="txtNombre" required="">
 										<label class="mdl-textfield__label" >Ingrese el nombre de la persona.</label>
 									</div>
 								</div>
@@ -46,29 +50,33 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtApellidos">
+										<input class="mdl-textfield__input" type="text" name="txtApellidos" required="">
 										<label class="mdl-textfield__label" >Ingrese apellidos de la persona.</label>
 									</div>
 								</div>
 
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtSexo">
-										<label class="mdl-textfield__label" >Ingrese sexo de la persona.</label>
-									</div>
-								</div>
+											<div class="mdl-textfield mdl-js-textfield">
+												<select class="mdl-textfield__input" name="txtSexo" required="">
+													<option value="" disabled="" selected="">Seleccionar el genero</option>
+													 	    <option value="Femenino">Femenino</option>
+													 	    <option value="Maculino">Masculino</option>
+												</select>
+											</div>
+										</div>
+
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtConfirmado_otro_lugar">
+										<input class="mdl-textfield__input" type="text" name="txtConfirmado_otro_lugar" required="">
 										<label class="mdl-textfield__label" >Ingrese el lugar de la confirmación.</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="date" name="txtFecha_nacimiento">
+										<input class="mdl-textfield__input" type="date" name="txtFecha_nacimiento" required="">
 										<label >Ingresa fecha de nacimiento</label>
 									</div>
 								</div>
@@ -76,7 +84,7 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_padre">
+										<input class="mdl-textfield__input" type="text" name="txtNombre_padre" required="">
 										<label class="mdl-textfield__label" >Ingrese el nombre completo del papá.</label>
 									</div>
 								</div>
@@ -84,28 +92,28 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_madre">
+										<input class="mdl-textfield__input" type="text" name="txtNombre_madre" required="">
 										<label class="mdl-textfield__label" >Ingrese el nombre completo de la mamá.</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_padrino">
+										<input class="mdl-textfield__input" type="text" name="txtNombre_padrino"  required="">
 										<label class="mdl-textfield__label" >Ingrese el nombre completo del padrino.</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_madrina">
+										<input class="mdl-textfield__input" type="text" name="txtNombre_madrina" required="">
 										<label class="mdl-textfield__label" >Ingrese el nombre completo de la madrina..</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtMinistro">
+												<select class="mdl-textfield__input" name="txtMinistro" required="">
 													<option value="" disabled="" selected="">Seleccionar Ministro</option>
 													<?php
 													if ($confirmacion->ministro !=null) {
@@ -121,23 +129,55 @@ $modeloParroquia = new Parroquia();
 											</div>
 										</div>
 
+
+<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+											<div class="mdl-textfield mdl-js-textfield">
+												<select class="mdl-textfield__input" name="txtObispo" required="">
+													<option value="" disabled="" selected="">Seleccionar Obispo</option>
+													<?php
+													if ($confirmacion->obispo !=null) {
+
+													$objObispo = $modeloObispo->obtenerobispo($confirmacion->obispo);
+													echo  '<option value="'.$objObispo->nombre.'" selected>'.$objObispo->nombre.'</option>';
+													}else{echo "string";}
+													 ?>
+													 <?php foreach($modeloObispo->listarobispo() as $r): ?>
+													 	    <option value="<?php echo $r->idobispo; ?>"><?php echo $r->nombre; ?></option>
+													 	    <?php endforeach; ?>
+												</select>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="date" name="txtFecha_confirmacion">
+										<input class="mdl-textfield__input" type="date" name="txtFecha_confirmacion"  required="">
 										<label >Selecciona fecha de confirmacion</label>
 									</div>
 								</div>
 
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="date" name="txtFecha_bautismo">
+										<input class="mdl-textfield__input" type="date" name="txtFecha_bautismo" required="">
 										<label >Selecciona fecha de bautismo</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtParroquia_bautismo">
+												<select class="mdl-textfield__input" name="txtParroquia_bautismo" required="">
 													<option value="" disabled="" selected="">Seleccionar Parroquia de bautismo</option>
 													<?php
 													if ($confirmacion->parroquia_bautismo !=null) {
@@ -157,7 +197,7 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtDiosesis">
+										<input class="mdl-textfield__input" type="text" name="txtDiosesis" required="">
 										<label class="mdl-textfield__label" >Ingrese diosesis.</label>
 									</div>
 								</div>
@@ -166,17 +206,31 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtFolio">
+										<input class="mdl-textfield__input" type="text" name="txtFolio" required="">
 										<label class="mdl-textfield__label" >Ingrese el codigo del folio.</label>
 									</div>
 								</div>
 
-
+								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<input class="mdl-textfield__input" type="int" name="txtEdad" required="">
+										<label class="mdl-textfield__label" >Ingrese la edad del confirmado.</label>
+									</div>
 								</div>
 
 
+								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+											<div class="mdl-textfield mdl-js-textfield">
+												<select class="mdl-textfield__input" name="txtHijo" required="">
+													<option value="" disabled="" selected="">Seleccionar Tipo de Hijo</option>
+													 	    <option value="Hijo Legitimo">Hijo Legitimo</option>
+													 	    <option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
+												</select>
+											</div>
+										</div>
 
-							
+
+								</div>
 		<p class="text-center">
 			<button href="#!" class="btn btn bg-primary btn-raised btn-md"><i class="zmdi zmdi-floppy" id="btn-addCompany"></i> GUARDAR</button>
 			</p>

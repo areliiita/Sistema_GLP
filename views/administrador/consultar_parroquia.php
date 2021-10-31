@@ -9,7 +9,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px; background-color: #0088b6">
+					<ul class="nav nav-tabs" style="margin-bottom: 15px; background-color: #00798f">
 
 		<li class="bg-primary"><a href="#listPeriod"  data-toggle="tab"><i class="zmdi zmdi-time-restore"></i> Informe General</a></li>
 					</ul>
@@ -29,7 +29,7 @@
 											<th class="text-center">Encargado </th>
 											<th class="text-center">Editar</th>
 											<th class="text-center">Eliminar</th>
-											<th class="text-center">Imprimir</th>
+
 										</tr>
 									</thead>
 									<tbody>
@@ -45,7 +45,6 @@
 
 											<td><a href="?c=Parroquia&a=Modificar&id=<?php echo $r->id_parroquia; ?>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 											<td><a href="?c=Parroquia&a=Eliminar&id=<?php echo $r->id_parroquia; ?>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                            <td><a href="" class="btn btn-info btn-raised btn-xs"><i class="fas fa-print"></i></a></td>
                                         </tr>
 									<?php endforeach; ?></tbody></tbody>
 								</table>
