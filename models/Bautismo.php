@@ -16,6 +16,7 @@ class Bautismo
     public $nombre_ministro;
     public $hijo;
 
+
 	public function __CONSTRUCT()
 	{
 		try
@@ -109,12 +110,14 @@ class Bautismo
 	}
 
 
+
 	public function obtenerbautismo($id)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare("SELECT * FROM agenda_bautismo WHERE idbautismo=?");
+			$stm = $this->pdo  ->prepare("SELECT  b.idbautismo, p.nombre_parroquia, DATE_FORMAT(b.fecha_bautismo, '%M %d %Y') AS fecha_bautismo, UPPER(b.nombre_bautizado) AS nombre_bautizado, b.fecha_nacimiento, b.nombre_hospitaldenacimiento, b.nombre_padre, b.nombre_madre, b.nombre_padrino, b.nombre_madrina, b.nombre_padrino3, b.codigo_folio, s.nombre as nombre_ministro,  b.hijo  from agenda_bautismo
+			as b inner join sacerdote as s on s.idsacerdote = b.nombre_ministro
+            inner join parroquia as p on p.id_parroquia  = b.nombre_parroquia WHERE idbautismo= ?");
 
 			$stm->execute(array($id));
 
@@ -154,31 +157,6 @@ public function eliminarbautismo($id){
 
 
 
-
-public function buscarBautismos($id)
-	{
-		try{
-			$stm = $this->pdo
-			          ->prepare("CALL ps_buscar_sacerdote(?)");
-
-
-
-		  $stm->execute(array($id));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
-		}
-        catch (Throwable $t)//php7
-        {
-			die($t->getMessage());
-        }
-		catch(Exception $e)//php5
-		{
-			die($e->getMessage());
-		}
-	}
-
-
-
 	public function listarbautismo()
 	{
 		try
@@ -197,6 +175,44 @@ public function buscarBautismos($id)
 			die($e->getMessage());
 		}
 	}
+
+
+
+	public function obtenerbautismomes()
+	{
+		try
+		{
+
+			$stm = $this->pdo->prepare("SELECT count(idbautismo) as total, MONTHNAME(fecha_bautismo) as mes, YEAR(fecha_bautismo) AS año   from agenda_bautismo WHERE month(fecha_bautismo) = MONTH(CURDATE());");
+			$stm->execute();
+
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+
+	public function obtenerbautismofecha($data)
+	{
+		try
+		{
+		$stm = $this->pdo->prepare('SELECT   from agenda_bautismo  where fecha_bautismo BETWEEN "' . $fechadesde .'" AND "' . $fechahasta. '" ORDER BY DESC;');
+			$stm->execute(array(
+								$data->$fechadesde,
+								$data->$fechahasta
+							));
+
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
 
 }
 

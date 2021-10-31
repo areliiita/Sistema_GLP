@@ -111,7 +111,9 @@ class Comunion
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM agenda_primeracomunion WHERE idprimeracomunion=?");
+			          ->prepare("SELECT pc.idprimeracomunion, pc.nombre, pc.apellidos, pc.fecha_nacimiento, pc.domicilio, pc.nombre_padre, pc.nombre_madre, p.nombre_parroquia as parroquia_bautismo, pc.fecha_bautismo, pc.folio, pc.fecha_confesion, DATE_FORMAT(pc.fecha_comunion, '%M %d %Y') as fecha_comunion, pc.catequista, s.nombre as celebrante_comunion  FROM agenda_primeracomunion as pc
+			 inner join sacerdote as s on s.idsacerdote = pc.celebrante_comunion
+            inner join parroquia as p on p.id_parroquia  = pc.parroquia_bautismo WHERE idprimeracomunion= ?");
 
 			$stm->execute(array($id));
 
@@ -148,32 +150,6 @@ public function eliminarComunion($id){
 		}
 
 }
-
-
-
-
-public function buscarBautismos($id)
-	{
-		try{
-			$stm = $this->pdo
-			          ->prepare("CALL ps_buscar_sacerdote(?)");
-
-
-
-		  $stm->execute(array($id));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
-		}
-        catch (Throwable $t)//php7
-        {
-			die($t->getMessage());
-        }
-		catch(Exception $e)//php5
-		{
-			die($e->getMessage());
-		}
-	}
-
 
 	public function listarcomunion()
 	{

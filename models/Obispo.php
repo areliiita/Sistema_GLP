@@ -1,12 +1,10 @@
 <?php
-class Sacerdote
+class Obispo
 {
-    public $idsacerdote;
+    public $idobispo;
     public $nombre;
     public $apellido;
     public $cargo;
-    public $fecha_nacimiento;
-    public $dui;
     public $nacionalidad;
     public $periodo_desde;
     public $periodo_hasta;
@@ -28,18 +26,16 @@ class Sacerdote
 	}
 
 
-	public function guardarSacerdote($data)
+	public function guardarObispo($data)
 	{
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("INSERT INTO `sacerdote`(nombre, apellido, cargo, fecha_nacimiento, dui, nacionalidad, periodo_desde, periodo_hasta) VALUES (?,?,?,?,?,?,?,?)");
+			          ->prepare("INSERT INTO `obispo`(nombre, apellido, cargo, nacionalidad, periodo_desde, periodo_hasta) VALUES (?,?,?,?,?,?)");
 			$stm->execute(array(
                                     $data->nombre,
                                     $data->apellido,
                                     $data->cargo,
-                                    $data->fecha_nacimiento,
-                                    $data->dui,
                                     $data->nacionalidad,
                                     $data->periodo_desde,
                                     $data->periodo_hasta
@@ -58,24 +54,21 @@ class Sacerdote
 	}
 
 
-
-	public function modificarSacerdote($data)
+	public function modificarObispo($data)
 	{
 		try
 		{
-			$stm=$this->pdo->prepare("UPDATE sacerdote SET nombre = ?, apellido = ?, cargo = ?, fecha_nacimiento = ?, dui = ?, nacionalidad = ?, periodo_desde = ?, periodo_hasta = ?  WHERE idsacerdote = ?");
+			$stm=$this->pdo->prepare("UPDATE obispo SET nombre = ?, apellido = ?, cargo = ?, nacionalidad = ?, periodo_desde = ?, periodo_hasta = ?  WHERE idobispo = ?");
 
 			$stm->execute(
 				    array(
                             $data->nombre,
                             $data->apellido,
                             $data->cargo,
-                            $data->fecha_nacimiento,
-                            $data->dui,
-                            $data->nacionalidad,
+                             $data->nacionalidad,
                             $data->periodo_desde,
                             $data->periodo_hasta,
-                            $data->idsacerdote
+                            $data->idobispo
 					));
 			return $stm->fetch(PDO::FETCH_OBJ);
 		}
@@ -90,14 +83,11 @@ class Sacerdote
 	}
 
 
-
-
-	public function obtenersacerdote($id)
+	public function obtenerobispo($id)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare("SELECT * FROM sacerdote WHERE idsacerdote=?");
+			$stm = $this->pdo->prepare("SELECT * FROM obispo WHERE idobispo=?");
 
 			$stm->execute(array($id));
 
@@ -114,10 +104,11 @@ class Sacerdote
 	}
 
 
-public function eliminarsacerdote($id){
+public function eliminarobispo($id){
 	try
 	{
-		$stm = $this->pdo ->prepare("DELETE  from sacerdote where idsacerdote=?");
+		$stm = $this->pdo->prepare("DELETE  from obispo where idobispo=?");
+
 			$stm->execute(array($id));
 
 			return $stm->fetch(PDO::FETCH_OBJ);
@@ -133,12 +124,13 @@ public function eliminarsacerdote($id){
 }
 
 
-	public function listarsacerdote()
+	public function listarObispo()
 	{
 		try
 		{
-			$stm = $this->pdo->prepare("SELECT * from sacerdote");
+			$stm = $this->pdo->prepare("SELECT * from obispo");
 			$stm->execute();
+
 			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}
 		catch(Exception $e)
