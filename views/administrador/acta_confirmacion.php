@@ -26,7 +26,7 @@
 
 <div class="mdl-grid">
 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-<a  href="javascript:Imprimir_Contenido('acta_confirmacion')"><button type="submit" class="btn btn bg-primary btn-raised btn-md" style="color:white;"><i class="fas fa-print"></i>IMPRIMIR</button></a>
+<a  href="javascript:Imprimir_confirmacion1('acta_confirmacion')"><button type="submit" class="btn btn bg-primary btn-raised btn-md" style="color:white;"><i class="fas fa-print"></i>IMPRIMIR</button></a>
     </div>
      </div>
 <?php endif?>
@@ -59,22 +59,18 @@
 
 <div id="acta_confirmacion">
 <div style="background-color:#E6E6FA">
-    <img style="float:left;margin-bottom:15px;margin-left: 40px; margin-right: 40px;white-space:pre;" src="./views/administrador/logo/logo.png" width="150px" alt="Logo"> &nbsp;
+    <img style="float:left;margin-bottom:0px;margin-left: 40px; margin-right: 40px; margin-left: 40px;white-space:pre; margin-top: 10px" src="./views/administrador/logo/logo.png" width="130px" alt="Logo"> &nbsp;
     <p>
-    	<br>
-    	<br>
-    	<br>
-    	<br>
-    <h2 style="margin-top:50px;margin-bottom:50px;text-align:center;"><b> FE DE CONFIRMACIÓN</b></h2>
+    <h2 style="margin-top:50px;margin-bottom:60px;text-align:justify;"><b> FE DE CONFIRMACIÓN</b></h2>
     </p>
 
-    <p style="text-align:justify;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-     Partida de confirmacion de: <b><?php echo $confirmacion->nombre . " " .$confirmacion->apellidos; ?></b>.</p>
-
-<p style="text-align:justify;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;"> El infraescrito   <b>  <?php
+    <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+     Partida de Confirmación de: <b><?php echo $confirmacion->nombre . " " .$confirmacion->apellidos; ?></b>
+     <br>
+     El infrascrito   <b> <u>  <?php
             if (isset($_POST['nombreParroco']))
             {
-                echo "Pbro:". $_POST['nombre_p']."<br>";
+                echo "Pbro.". $_POST['nombre_p']."<br>";
             }
         ?>
              <?php
@@ -83,37 +79,34 @@
                 echo "Vicario:". $_POST['nombre_v']."<br>";
             }
         ?>
-        </b></p>
+        </u></b>
+        De la Parroquia <b> <u><?php echo $confirmacion->parroquia_bautismo; ?></b>, Ilobasco,Cabañas</u> certifica que:
+     </p>
 
-<p style="text-align:justify;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;"> De la parroquia <b><?php echo $confirmacion->parroquia_bautismo; ?></b>, Ilobasco,Cabañas certifica que:
-<br>
-<br>
 
- <p style="text-align:justify;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">El Excelentísimo Señor obispo de la diosecis <?php echo $confirmacion->diosesis; ?>, <?php echo $confirmacion->obispo; ?>, autorizo al Pbro<?php echo $confirmacion->ministro; ?>,
-  quien impartio el sacramento de la confirmación a: <b><?php echo $confirmacion->nombre . " " .$confirmacion->apellidos; ?></b> de  <?php echo $confirmacion->edad; ?> años de edad, el dia <?php echo $confirmacion->fecha_confirmacion; ?>, en el <?php echo $confirmacion->confirmado_otro_lugar; ?> de  la parroquia <b><?php echo $confirmacion->parroquia_bautismo; ?></b>,siendo <?php echo $confirmacion->hijo; ?> de, <?php echo $confirmacion->nombre_padre; ?> y <?php echo $confirmacion->nombre_madre; ?></p>.
-        <br>
 
-     <p style="text-align:justify;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-     <b>Padrino:</b><?php echo $confirmacion->nombre_padrino; ?>,<?php echo $confirmacion->nombre_madrina; ?>.</p>
-     <br>
+ <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">El Excelentísimo Señor obispo de la Diócesis <?php echo $confirmacion->diosesis; ?>, Monseñor <?php echo $confirmacion->obispo; ?>,
+  quien impartió el sacramento de la confirmación a: <b><?php echo $confirmacion->nombre . " " .$confirmacion->apellidos; ?></b> de  <?php echo $confirmacion->edad; ?> años de edad, el día <?php echo $confirmacion->fecha_confirmacion; ?>, en  <?php echo $confirmacion->confirmado_otro_lugar; ?> de  la Parroquia <b><?php echo $confirmacion->parroquia_bautismo; ?></b>, siendo <?php echo $confirmacion->hijo; ?> de, <?php echo $confirmacion->nombre_padre; ?> y <?php echo $confirmacion->nombre_madre; ?>.
+  <br>
+     <b><u>Padrinos: </b><?php echo $confirmacion->nombre_padrino; ?>,<?php echo $confirmacion->nombre_madrina; ?></u>.</p>
 
-     <p style="text-align:justify;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-    La presente es copia fiel del  originario, la que  me remitio y la expide en la Oficina Paroquial  el dia.
+     <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+    La presente es copia fiel del  original, la que  me remito y la expido en la Oficina Paroquial  el día
 <?php
 date_default_timezone_set('America/El_Salvador');
 $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Domingo");
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
 echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-?>
+?>.<br><br>
 </p>
-<br><br>
 
- <p style="text-align:center;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+
+ <p style="text-align:center;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">
   <?php
             if (isset($_POST['nombreParroco']))
             {
-                echo $_POST['nombre_p']."<br> Parroco.";
+                echo "Pbro.". $_POST['nombre_p']."<br> Párroco.";
             }
         ?>
         <?php
@@ -124,37 +117,27 @@ echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'
         ?>
         </p>
 
+ <p style="text-align:justify;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
+          <b>AUTENTICIDAD<br></b>Se certifica que el sello de la Paroquia  de__________________________________
+<br>
+Y la firma del Párroco P.___________________________________son auténticos.
+<br>
+SELLO
+</P>
 
 
- <p style="text-align:justify;margin-left:100px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-          <b>AUTENTICIDAD<br></b>Se certifica que el sello de la Paroquia  de_______________________________________________________
-</p>
+<p style="text-align:right;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
+         VICARIO GENERAL
+        </p>
 
- <p style="text-align:justify;margin-left:100px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-          Y la firma del Párroco P._________________________________________________________son auténticos.
-  </p>
-           <br><br>
-   <p style="text-align:justify;margin-left:100px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-          SELLO__________________________________________________________________________________<br>
-  <p style="text-align:justify;margin-left:800px;margin-right:50px;line-height: 20pt; font-size: 20px;">VICARIO GENERAL
-  </p>
-         <br>
-         <br>
-         <br>
-         <br>
-  <p style="text-align:justify;margin-left:100px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-        San Vicente, a_____________________ de _____________________ del Dos mil _____________________</p>.
-    </p>
-    <br>
-   <div>
-        <hr>
-           <p style="text-align:right;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
-         <small>  <i>Parroquia San Antonio de Padua <br>
+          <p style="text-align:justify;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18Px;">
+         San Vicente, a_____________ de _________________ del Dos mil ____________</p>.
+
+           <i><small><p style="text-align:right;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
+           Parroquia San Antonio de Padua <br>
             Agua Zarca San Antonio km 49 1/2, Carretera a Ilobasco, Cabañas<br>
             E-mail: sanantoniodepaduailob@gmail.com <br>
-            Tel.7203-6039
-            </i>
-            </small>
+            Tel.7203-6039</small></i>
          </p>
          </div>
 </div>
@@ -164,7 +147,7 @@ echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'
 
 
 <script language="Javascript">
-  function Imprimir_Contenido(nombre)
+  function Imprimir_confirmacion1(nombre)
   {
   var ficha = document.getElementById(nombre);
   var Ventana_Impresion = window.open(' ', 'popimpr');
