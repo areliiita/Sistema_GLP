@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>F-R USUARIOS</title>
 
-</head>
-<body>
 		<section class="full-width header-well">
 			<div class="full-width header-well-icon">
 					<i class="zmdi zmdi-accounts"></i>
@@ -64,8 +56,8 @@
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtClave" value="<?php echo $usuario->clave; ?>">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese su contraseña.</label>
+			<input class="mdl-textfield__input" type="text" name="txtClave" >
+					<label class="mdl-textfield__label" for="urlCompany">Ingrese su contraseña</label>
 				</div>
 			</div>
 
@@ -89,7 +81,4 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
-</body>
-</html>
+		<br><br>
