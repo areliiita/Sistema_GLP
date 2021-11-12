@@ -30,7 +30,7 @@ class Usuario
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("call ps_entrar(?,?)");
+			          ->prepare("SELECT * FROM usuario WHERE email = ? AND clave = MD5(?)");
 
 			$stm->execute(array($email, $contrasena));
 
@@ -48,25 +48,23 @@ class Usuario
 
 
 
-
 	public function guardarUsuario($data)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare("call ps_guardar_usuario(?, ?, ?, ?, ?, ?)");
+			$sql="INSERT INTO usuario(nombre, apellido, telefono, email, clave, rol)  VALUES (?, ?, ?, ?, md5(?), ?)";
+			$this->pdo->prepare($sql)
+			->execute(array(
+								$data->nombre,
+								$data->apellido,
+								$data->telefono,
+								$data->email,
+								$data->clave,
+								$data->rol
+							)
+						);
 
 
-			$stm->execute(array(
-                                    $data->nombre,
-                                    $data->apellido,
-                                    $data->telefono,
-                                    $data->email,
-                                    $data->clave,
-                                    $data->rol
-                				));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
 		}
         catch (Throwable $t)//php7
         {
@@ -77,27 +75,56 @@ class Usuario
 			die($e->getMessage());
 		}
 	}
-
 
 
 	public function modificarUsuario($data)
 	{
 		try
 		{
-			$stm=$this->pdo->prepare("call ps_modificar_usuario(?, ?, ?, ?, ?, ?, ?)");
+			if($this->validateEmptyPassword($data->clave)){
+				$sql = "UPDATE usuario SET
+			            nombre= ?,
+			            apellido = ?,
+			            telefono = ?,
+			            email = ?,
+			            clave = MD5(?),
+			            rol = ?
+			            WHERE idusuario = ?";
+					$this->pdo->prepare($sql)
+					->execute(
+					   array(
+							   $data->nombre,
+							   $data->apellido,
+							   $data->telefono,
+							   $data->email,
+							   $data->clave,
+							   $data->rol,
+							   $data->idusuario
+					   )
+				   );
+			}else{
+				$sql = "UPDATE usuario SET
+							nombre= ?,
+							apellido = ?,
+							telefono = ?,
+							email = ?,
+							rol = ?
+							WHERE idusuario = ?";
+				$this->pdo->prepare($sql)
+				->execute(
+				   array(
+						   $data->nombre,
+						   $data->apellido,
+						   $data->telefono,
+						   $data->email,
+						   $data->rol,
+						   $data->idusuario
+				   )
+			   );
+			}
 
-			$stm->execute(
-				    array(
-                            $data->nombre,
-                            $data->apellido,
-                            $data->telefono,
-                            $data->email,
-                            $data->clave,
-                            $data->rol,
-                            $data->idusuario
-					));
 
-					return $stm->fetch(PDO::FETCH_OBJ);
+
 		}
         catch (Throwable $t)//php7
         {
@@ -109,6 +136,12 @@ class Usuario
 		}
 	}
 
+	public function validateEmptyPassword($password){
+		if($password != ""){
+			return true;
+		}else return false;
+
+	}
 
 
 	public function obtenerusuario($id)
@@ -116,7 +149,7 @@ class Usuario
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("CALL ps_obtener_usuario(?)");
+			          ->prepare("SELECT idusuario,nombre,apellido,email,clave,telefono,rol FROM usuario WHERE idusuario=?");
 
 
 			$stm->execute(array($id));
@@ -133,15 +166,14 @@ class Usuario
 		}
 	}
 
-public function eliminarusuario($id){
+public function eliminarUsuario($id){
 	try
 	{
-		$stm = $this->pdo
-			          ->prepare("delete from usuario where idusuario=?");
+		$sql = "DELETE  from usuario where idusuario = $id";
 
-			$stm->execute(array($id));
+		$this->pdo->prepare($sql)
+			     ->execute();
 
-			return $stm->fetch(PDO::FETCH_OBJ);
 	}
 	 catch (Throwable $t)//php7
         {
@@ -161,7 +193,7 @@ public function eliminarusuario($id){
 		try
 		{
 
-			$stm = $this->pdo->prepare("SELECT idusuario,nombre, apellido, telefono, email, rol from usuario");
+			$stm = $this->pdo->prepare("SELECT idusuario,nombre, apellido, telefono, email,rol from usuario");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
