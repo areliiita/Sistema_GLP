@@ -28,44 +28,44 @@
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" name="txtNombre">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre .</label>
+				<input class="mdl-textfield__input" type="text" name="txtNombre" required="">
+					<label class="mdl-textfield__label">Ingrese el nombre .</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" name="txtApellido">
-				<label class="mdl-textfield__label" for="urlCompany">Ingrese los apellidos.</label>
+				<input class="mdl-textfield__input" type="text" name="txtApellido" required="">
+				<label class="mdl-textfield__label" >Ingrese los apellidos.</label>
 			</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="int" name="txtTelefono">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese número telefonico.</label>
+					<input class="mdl-textfield__input" type="int" name="txtTelefono" required="">
+					<label class="mdl-textfield__label ">Ingrese número telefonico.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtEmail">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese cuenta de email.</label>
+					<input class="mdl-textfield__input" type="email" name="txtEmail" required="">
+					<label class="mdl-textfield__label" >Ingrese cuenta de email.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtClave">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese su contraseña.</label>
+					<input class="mdl-textfield__input" type="text" name="txtClave" required="">
+					<label class="mdl-textfield__label" >Ingrese su contraseña.</label>
 				</div>
 			</div>
 
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="number" name="txtRol">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese su rol</label>
+					<input class="mdl-textfield__input" type="number" name="txtRol" required="">
+					<label class="mdl-textfield__label">Ingrese su rol</label>
 				</div>
 			</div>
 
@@ -81,4 +81,4 @@
 				</div>
 			</div>
 		</div>
-	</section>
+		<br><br>
