@@ -28,22 +28,15 @@ $modeloParroquia = new Parroquia();
 					<div class="full-width panel-content">
 						<form  class="col s12" action="?c=Bautismo&a=Guardar" method="post" enctype="multipart/form-data">
 							<div class="mdl-grid">
-								<div class="mdl-grid">
 		<input type="hidden" name="txtIdbautismo" value="<?php echo $bautismo->idbautismo; ?>" />
 
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield">
 				<select class="mdl-textfield__input" name="txtNombre_parroquia" value="<?php echo $bautismo->nombre_parroquia; ?>" >
-				<option value="" disabled="" selected="">Seleccionar Parroquia</option>
-				<?php
-					if ($bautismo->nombre_parroquia !=null) {
-						$objParroquia = $modeloParroquia->obtenerparroquia($bautismo->nombre_parroquia);
-						echo  '<option value="'.$objParroquia->nombre_parroquia.'" selected>'.$objParroquia->nombre_parroquia.'</option>';
-							}else{echo "strring";}
-							 ?>
-						 <?php foreach($modeloParroquia->listarParroquia() as $r): ?>
- <option value="<?php echo $r->id_parroquia; ?>"><?php echo $r->nombre_parroquia; ?></option>
-						<?php endforeach; ?>
+				<?php foreach ($modeloParroquia->listarParroquia() as $r):?>
+					<option value="<?php echo $r->id_parroquia; ?>" <?php if($bautismo->nombre_parroquia==$r->id_parroquia) echo "selected"; ?> ><?php echo $r->nombre_parroquia; ?></option>
+				<?php endforeach; ?>
+
 					</select>
 				</div>
 			</div>
@@ -122,32 +115,37 @@ $modeloParroquia = new Parroquia();
 									</div>
 								</div>
 
-
 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
 												<select class="mdl-textfield__input" name="txtNombre_de_ministro" value="<?php echo $bautismo->nombre_ministro; ?>" >
-													<option value="" disabled="" selected="">Seleccionar Ministro</option>
-													<?php
-													if ($bautismo->nombre_ministro !=null) {
 
-													$objSacerdote = $modeloSacerdote->obtenersacerdote($bautismo->nombre_ministro);
-													echo  '<option value="'.$objSacerdote->nombre.'" selected>'.$objSacerdote->nombre.'</option>';
-													}else{echo "string";}
-													 ?>
-													 <?php foreach($modeloSacerdote->listarSacerdote() as $r): ?>
-													 	    <option value="<?php echo $r->idsacerdote; ?>"><?php echo $r->nombre; ?></option>
-													 	    <?php endforeach; ?>
+												<?php foreach ($modeloSacerdote->listarSacerdote() as $r):?>
+												<option value="<?php echo $r->idsacerdote; ?>" <?php if($bautismo->nombre_ministro==$r->idsacerdote) echo "selected"; ?> ><?php echo $r->nombre; ?></option>
+												<?php endforeach; ?>
+
 												</select>
 											</div>
 										</div>
 
 
+
+
              <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield">
 				<select class="mdl-textfield__input" name="txtHijo" value="<?php echo $bautismo->hijo; ?>">
-				<option value="" disabled="" selected="">Selecciona Hijo</option>
-				<option value="Hijo Legitimo">Hijo Legitimo</option>
-				<option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
+					<?php
+						if ($bautismo->hijo=="Hijo Legitimo") {
+					?>
+					<option value="Hijo Legitimo" selected="">Hijo Legitimo</option>
+					<option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
+					<?php
+					} else {
+					?>
+					<option value="Hijo Legitimo">Hijo Legitimo</option>
+					<option value="Hijo Ilegitimo" selected="">Hijo Ilegitimo</option>
+					<?php
+						}
+					?>
 				</select>
 							</div>
 							</div>
@@ -157,11 +155,10 @@ $modeloParroquia = new Parroquia();
 
 
 			<p class="text-center">
-			<button href="#!" type="submit" class="btn btn bg-primary btn-raised btn-md"><i class="zmdi zmdi-floppy" ></i> GUARDAR</button>
+			<button href="#!" type="submit" class="btn btn bg-primary btn-raised btn-md"><i class="zmdi zmdi-floppy" ></i>MODIFICAR</button>
 			</p>
 			</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
