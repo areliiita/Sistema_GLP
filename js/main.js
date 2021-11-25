@@ -12,18 +12,34 @@ $(document).ready(function(){
 	});
 	$('.btn-exit-system').on('click', function(){
 		swal({
-		  	title: 'Are you sure?',
-		  	text: "The current session will be closed",
+		  	title: 'Quieres salir del sistema?',
+		  	text: "Salir del Sistema Gestión de Libros Parroquiales",
 		  	type: 'warning',
 		  	showCancelButton: true,
-		  	confirmButtonColor: '#03A9F4',
-		  	cancelButtonColor: '#F44336',
-		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Yes, Exit!',
+		  	confirmButtonColor: '#00798f',
+		  	cancelButtonColor: '#7a3b00',
+		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Si, Salir!',
 		  	cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> No, Cancel!'
 		}).then(function () {
-			window.location.href="index.html";
+			window.location.href="index.php?c=Login&a=Index";
 		});
 	});
+
+	$('.btn-modal-help').on('click', function(){
+		swal({
+		  	title: 'Ayuda para usar el sistema?',
+		  	text: "En el siguiente link, puedes visualizar los manuales para ayuda",
+		  	showCancelButton: true,
+		  	confirmButtonColor: '#0088b6',
+		  	cancelButtonColor: '#7a3b00',
+		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Ayuda, Ver!',
+		  	cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> No, Cancel!'
+		}).then(function () {
+			window.location.href="";
+		});
+	});
+
+
 	$('.btn-menu-dashboard').on('click', function(){
 		var body=$('.dashboard-contentPage');
 		var sidebar=$('.dashboard-sideBar');
@@ -63,7 +79,7 @@ $(document).ready(function(){
 		  )
 		});
 	});
-	$('.btn-modal-help').on('click', function(){
+	$('').on('click', function(){
 		$('#Dialog-Help').modal('show');
 	});
 });
