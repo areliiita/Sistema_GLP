@@ -20,7 +20,7 @@ class Comunion
 	{
 		try
 		{
-			$this->pdo = Conexion::Conectar();
+			$this->pdo = Conexion::Conectar("SET @@lc_time_names = _locale;");
 		}
         catch (Throwable $t)//php7
         {
@@ -32,15 +32,15 @@ class Comunion
 		}
 	}
 
-
-	public function guardarComunion($data)
+public function guardarcomunion($data)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare(" INSERT INTO `agenda_primeracomunion`(nombre, apellidos, fecha_nacimiento, domicilio, nombre_padre, nombre_madre, parroquia_bautismo, fecha_bautismo, folio, fecha_confesion, fecha_comunion, catequista, celebrante_comunion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$sql = " INSERT INTO agenda_primeracomunion (nombre, apellidos, fecha_nacimiento, domicilio, nombre_padre, nombre_madre, parroquia_bautismo, fecha_bautismo, folio, fecha_confesion, fecha_comunion, catequista, celebrante_comunion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-			$stm->execute(array(
+	       	$this->pdo->prepare($sql)
+		     ->execute(
+				array(
                                     $data->nombre,
                                     $data->apellidos,
                                     $data->fecha_nacimiento,
@@ -54,9 +54,9 @@ class Comunion
 									$data->fecha_comunion,
 									$data->catequista,
                                     $data->celebrante_comunion
-                				));
+                				)
+                );
 
-			return $stm->fetch(PDO::FETCH_OBJ);
 		}
         catch (Throwable $t)//php7
         {
@@ -70,15 +70,31 @@ class Comunion
 
 
 
-	public function modificarComunion($data)
+
+	public function modificarcomunion($data)
 	{
 		try
 		{
-		$stm=$this->pdo->prepare(" UPDATE `agenda_primeracomunion` SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, domicilio = ?, nombre_padre = ?, nombre_madre = ?, parroquia_bautismo= ?, fecha_bautismo = ? ,folio= ?, fecha_confesion = ?, fecha_comunion = ?, catequista = ?, celebrante_comunion= ?  WHERE idprimeracomunion = ?");
+		$sql =  "UPDATE agenda_primeracomunion SET
+		              nombre = ?,
+		              apellidos = ?,
+		              fecha_nacimiento = ?,
+		              domicilio = ?,
+		              nombre_padre = ?,
+		              nombre_madre = ?,
+		              parroquia_bautismo= ?,
+		              fecha_bautismo = ?,
+		              folio= ?,
+		              fecha_confesion = ?,
+		              fecha_comunion = ?,
+		              catequista = ?,
+		              celebrante_comunion= ?
+		              WHERE idprimeracomunion = ?";
 
-			$stm->execute(
+		$this->pdo->prepare($sql)
+			     ->execute(
 				    array(
-				    		 $data->nombre,
+				    		        $data->nombre,
                                     $data->apellidos,
                                     $data->fecha_nacimiento,
                                     $data->domicilio,
@@ -92,8 +108,8 @@ class Comunion
 									$data->catequista,
                                     $data->celebrante_comunion,
                                     $data->idprimeracomunion
-					));
-			return $stm->fetch(PDO::FETCH_OBJ);
+					)
+				);
 		}
         catch (Throwable $t)//php7
         {
@@ -104,6 +120,11 @@ class Comunion
 			die($e->getMessage());
 		}
 	}
+
+
+
+
+
 
 
 	public function obtenercomunion($id)
@@ -111,9 +132,10 @@ class Comunion
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT pc.idprimeracomunion, pc.nombre, pc.apellidos, pc.fecha_nacimiento, pc.domicilio, pc.nombre_padre, pc.nombre_madre, p.nombre_parroquia as parroquia_bautismo, pc.fecha_bautismo, pc.folio, pc.fecha_confesion, DATE_FORMAT(pc.fecha_comunion, '%M %d %Y') as fecha_comunion, pc.catequista, s.nombre as celebrante_comunion  FROM agenda_primeracomunion as pc
+			          ->prepare("SELECT pc.idprimeracomunion, pc.nombre, pc.apellidos, pc.fecha_nacimiento, pc.domicilio, pc.nombre_padre, pc.nombre_madre, p.nombre_parroquia as parroquia_bautismo, pc.fecha_bautismo, pc.folio, pc.fecha_confesion, pc.fecha_comunion, pc.catequista, s.nombre as celebrante_comunion  FROM agenda_primeracomunion as pc
 			 inner join sacerdote as s on s.idsacerdote = pc.celebrante_comunion
             inner join parroquia as p on p.id_parroquia  = pc.parroquia_bautismo WHERE idprimeracomunion= ?");
+
 
 			$stm->execute(array($id));
 
@@ -129,16 +151,38 @@ class Comunion
 		}
 	}
 
-
-public function eliminarComunion($id){
-	try
+	public function obtenercomunion1($id)
 	{
-		$stm = $this->pdo
-			          ->prepare("DELETE FROM agenda_primeracomunion WHERE idprimeracomunion=?");
+		try
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT pc.idprimeracomunion, pc.nombre, pc.apellidos, DATE_FORMAT(pc.fecha_nacimiento,'%W' ' ' '%d' ' de ' '%M'  ' del ' '%Y', 'es_ES') AS fecha_nacimiento, pc.domicilio, pc.nombre_padre, pc.nombre_madre, p.nombre_parroquia as parroquia_bautismo, pc.fecha_bautismo, pc.folio, pc.fecha_confesion, DATE_FORMAT(pc.fecha_comunion, '%W' ' ' '%d' ' de ' '%M'  ' del ' '%Y', 'es_ES') as fecha_comunion, pc.catequista, s.nombre as celebrante_comunion  FROM agenda_primeracomunion as pc
+			 inner join sacerdote as s on s.idsacerdote = pc.celebrante_comunion
+            inner join parroquia as p on p.id_parroquia  = pc.parroquia_bautismo WHERE idprimeracomunion= ?");
+
 
 			$stm->execute(array($id));
 
 			return $stm->fetch(PDO::FETCH_OBJ);
+		}
+        catch (Throwable $t)//php7
+        {
+			die($t->getMessage());
+        }
+		catch(Exception $e)//php5
+		{
+			die($e->getMessage());
+		}
+	}
+
+public function eliminarcomunion($id)
+{
+	try
+	{
+		$sql = "DELETE FROM agenda_primeracomunion WHERE idprimeracomunion = $id";
+
+			$this->pdo->prepare($sql)
+			     ->execute();
 	}
 	 catch (Throwable $t)//php7
         {
@@ -159,6 +203,23 @@ public function eliminarComunion($id){
 		$stm = $this->pdo->prepare("SELECT pc.idprimeracomunion, pc.nombre, pc.apellidos, pc.fecha_nacimiento, pc.domicilio, pc.nombre_padre, pc.nombre_madre, p.nombre_parroquia as parroquia_bautismo, pc.fecha_bautismo, pc.folio, pc.fecha_confesion, pc.fecha_comunion, pc.catequista, s.nombre as celebrante_comunion  FROM agenda_primeracomunion as pc
 			 inner join sacerdote as s on s.idsacerdote = pc.celebrante_comunion
             inner join parroquia as p on p.id_parroquia  = pc.parroquia_bautismo;");
+			$stm->execute();
+
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+
+	public function obtenercomunionmes()
+	{
+		try
+		{
+
+			$stm = $this->pdo->prepare("SELECT count(idprimeracomunion) as total, DATE_FORMAT(fecha_comunion, '%M', 'es_ES') as mes, YEAR(fecha_comunion) AS año   from agenda_primeracomunion WHERE month(fecha_comunion) = MONTH(CURDATE());");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);

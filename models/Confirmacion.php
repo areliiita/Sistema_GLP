@@ -25,7 +25,7 @@ class confirmacion
 	{
 		try
 		{
-			$this->pdo = Conexion::Conectar();
+			$this->pdo = Conexion::Conectar("SET @@lc_time_names = _locale;");
 		}
         catch (Throwable $t)//php7
         {
@@ -38,14 +38,16 @@ class confirmacion
 	}
 
 
-	public function guardarConfirmacion($data)
+
+	public function guardarconfirmacion($data)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare(" INSERT INTO `agenda_confirmacion`(nombre, apellidos, sexo, confirmado_otro_lugar, fecha_nacimiento, nombre_padre, nombre_madre, nombre_padrino, nombre_madrina, ministro, obispo, fecha_confirmacion, fecha_bautismo, parroquia_bautismo, diosesis, folio, edad, hijo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$sql = " INSERT INTO agenda_confirmacion (nombre, apellidos, sexo, confirmado_otro_lugar, fecha_nacimiento, nombre_padre, nombre_madre, nombre_padrino, nombre_madrina, ministro, obispo, fecha_confirmacion, fecha_bautismo, parroquia_bautismo, diosesis, folio, edad, hijo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-			$stm->execute(array(
+		$this->pdo->prepare($sql)
+		     ->execute(
+				array(
                                     $data->nombre,
                                     $data->apellidos,
                                     $data->sexo,
@@ -65,9 +67,9 @@ class confirmacion
 									$data->edad,
 									$data->hijo
 
-                				));
+                				)
+                		);
 
-			return $stm->fetch(PDO::FETCH_OBJ);
 		}
         catch (Throwable $t)//php7
         {
@@ -80,17 +82,32 @@ class confirmacion
 	}
 
 
-
-	public function modificarConfirmacion($data)
+	public function modificarconfirmacion($data)
 	{
 		try
 		{
-		$stm=$this->pdo->prepare("UPDATE agenda_confirmacion SET nombre = ?, apellidos = ?,
-			sexo = ?, confirmado_otro_lugar = ?, fecha_nacimiento = ?, nombre_padre = ?,
-			nombre_madre = ?, nombre_padrino = ?, nombre_madrina = ?, ministro = ?, obispo = ?, fecha_confirmacion = ?,
-			fecha_bautismo = ?, parroquia_bautismo = ?,  diosesis = ?, folio = ?, edad = ?, hijo = ? WHERE idconfirmacion = ?");
+		$sql = "UPDATE agenda_confirmacion SET
+		            nombre = ?, apellidos = ?,
+		            sexo = ?,
+		            confirmado_otro_lugar = ?,
+		            fecha_nacimiento = ?,
+		            nombre_padre = ?,
+		            nombre_madre = ?,
+		            nombre_padrino = ?,
+		            nombre_madrina = ?,
+		            ministro = ?,
+		            obispo = ?,
+		            fecha_confirmacion = ?,
+			        fecha_bautismo = ?,
+		        	parroquia_bautismo = ?,
+		        	diosesis = ?,
+		        	folio = ?,
+		        	edad = ?,
+		        	hijo = ?
+		        	WHERE idconfirmacion = ?";
 
-			$stm->execute(
+		$this->pdo->prepare($sql)
+			     ->execute(
 				    array(
 						$data->nombre,
 						$data->apellidos,
@@ -111,8 +128,10 @@ class confirmacion
 						$data->edad,
 						$data->hijo,
 						$data->idconfirmacion
-					));
-			return $stm->fetch(PDO::FETCH_OBJ);
+					)
+
+			);
+
 		}
         catch (Throwable $t)//php7
         {
@@ -123,6 +142,7 @@ class confirmacion
 			die($e->getMessage());
 		}
 	}
+
 
 
 	public function obtenerconfirmacion($id)
@@ -130,10 +150,11 @@ class confirmacion
 		try
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT  c.idconfirmacion, c.nombre,c.apellidos, c.sexo, c.confirmado_otro_lugar, c.fecha_nacimiento, c.nombre_padre, c.nombre_madre, c.nombre_padrino, c.nombre_madrina, s.nombre as ministro,  o.nombre as obispo, c.fecha_confirmacion, c.fecha_bautismo, p.nombre_parroquia as parroquia_bautismo, c.diosesis, c.folio, c.edad, c.hijo from agenda_confirmacion  as c
+			          ->prepare("SELECT  c.idconfirmacion, c.nombre,c.apellidos, c.sexo, c.confirmado_otro_lugar, c.fecha_nacimiento, c.nombre_padre, c.nombre_madre, c.nombre_padrino, c.nombre_madrina, s.nombre as ministro,  o.nombre as obispo, c.fecha_confirmacion AS fecha_confirmacion, c.fecha_bautismo, p.nombre_parroquia as parroquia_bautismo, c.diosesis, c.folio, c.edad, c.hijo from agenda_confirmacion  as c
 			inner join sacerdote as s on s.idsacerdote = c.ministro
 			inner join obispo as o on o.idobispo = c.obispo
             inner join parroquia as p on p.id_parroquia  = c.parroquia_bautismo  WHERE idconfirmacion=?");
+
 
 			$stm->execute(array($id));
 
@@ -149,15 +170,39 @@ class confirmacion
 		}
 	}
 
-public function eliminarConfirmacion($id){
-	try
+
+	public function obtenerconfirmacion1($id)
 	{
-		$stm = $this->pdo
-			          ->prepare("DELETE FROM agenda_confirmacion WHERE idconfirmacion=?");
+		try
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT  c.idconfirmacion, c.nombre,c.apellidos, c.sexo, c.confirmado_otro_lugar, c.fecha_nacimiento, c.nombre_padre, c.nombre_madre, c.nombre_padrino, c.nombre_madrina, s.nombre as ministro,  concat(o.nombre, o.apellido) as obispo, DATE_FORMAT(c.fecha_confirmacion, '%W' ' ' '%d' ' del mes de  ' '%M' ' del año ' '%Y', 'es_ES') AS fecha_confirmacion, c.fecha_bautismo, p.nombre_parroquia as parroquia_bautismo, c.diosesis, c.folio, c.edad, c.hijo from agenda_confirmacion  as c
+			inner join sacerdote as s on s.idsacerdote = c.ministro
+			inner join obispo as o on o.idobispo = c.obispo
+            inner join parroquia as p on p.id_parroquia  = c.parroquia_bautismo  WHERE idconfirmacion=?");
+
 
 			$stm->execute(array($id));
 
 			return $stm->fetch(PDO::FETCH_OBJ);
+		}
+        catch (Throwable $t)//php7
+        {
+			die($t->getMessage());
+        }
+		catch(Exception $e)//php5
+		{
+			die($e->getMessage());
+		}
+	}
+
+public function eliminarconfirmacion($id){
+	try
+	{
+		$sql = "DELETE FROM agenda_confirmacion WHERE idconfirmacion = $id";
+
+			$this->pdo->prepare($sql)
+			     ->execute();
 	}
 	 catch (Throwable $t)//php7
         {
@@ -169,6 +214,7 @@ public function eliminarConfirmacion($id){
 		}
 
 }
+
 
 
 	public function listarconfirmacion()
@@ -196,30 +242,8 @@ public function eliminarConfirmacion($id){
 	{
 		try
 		{
-			$stm = $this->pdo->prepare(" SELECT  c.idconfirmacion, c.nombre,c.apellidos, c.sexo, c.confirmado_otro_lugar as Lugar_Confirmacion, c.fecha_nacimiento, c.nombre_padre as papa, c.nombre_madre as mama, c.nombre_padrino as padrino, c.nombre_madrina as madrina, s.nombre as ministro, o.nombre as obispo,  c.fecha_confirmacion, c.fecha_bautismo, p.nombre_parroquia as parroquia_bautismo, c.diosesis, c.folio, c.edad, c.hijo from agenda_confirmacion  as c
-			inner join sacerdote as s on s.idsacerdote = c.ministro
-			inner join obispo as o on o.idobispo = c.obispo
-            inner join parroquia as p on p.id_parroquia  = c.parroquia_bautismo WHERE month(fecha_confirmacion) = MONTH(CURDATE());");
+			$stm = $this->pdo->prepare(" SELECT  count(idconfirmacion) as total, DATE_FORMAT(fecha_confirmacion, '%M', 'es_ES') as mes, YEAR(fecha_confirmacion) AS año   from agenda_confirmacion WHERE month(fecha_confirmacion) = MONTH(CURDATE());");
 			$stm->execute();
-
-			return $stm->fetchAll(PDO::FETCH_OBJ);
-		}
-		catch(Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
-
-
-	public function obtenerconfirmacionfecha($data)
-	{
-		try
-		{
-		$stm = $this->pdo->prepare('SELECT   from agenda_confirmacion  where fecha_confirmacion BETWEEN "' . $fechadesde .'" AND "' . $fechahasta. '" ORDER BY DESC;');
-			$stm->execute(array(
-								$data->$fechadesde,
-								$data->$fechahasta
-							));
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}

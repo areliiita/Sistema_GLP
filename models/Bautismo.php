@@ -15,13 +15,14 @@ class Bautismo
     public $codigo_folio;
     public $nombre_ministro;
     public $hijo;
+    public $total;
 
 
 	public function __CONSTRUCT()
 	{
 		try
 		{
-			$this->pdo = Conexion::Conectar();
+			$this->pdo = Conexion::Conectar("SET @@lc_time_names = _locale;");
 		}
         catch (Throwable $t)//php7
         {
@@ -33,15 +34,15 @@ class Bautismo
 		}
 	}
 
-
-	public function guardarBautismo($data)
+public function guardarbautismo($data)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare(" INSERT INTO `agenda_bautismo`(nombre_parroquia, fecha_bautismo, nombre_bautizado, fecha_nacimiento, nombre_hospitaldenacimiento, nombre_padre, nombre_madre, nombre_padrino, nombre_madrina, nombre_padrino3, codigo_folio, nombre_ministro, hijo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$sql = " INSERT INTO agenda_bautismo (nombre_parroquia, fecha_bautismo, nombre_bautizado, fecha_nacimiento, nombre_hospitaldenacimiento, nombre_padre, nombre_madre, nombre_padrino, nombre_madrina, nombre_padrino3, codigo_folio, nombre_ministro, hijo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-			$stm->execute(array(
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
                                     $data->nombre_parroquia,
                                     $data->fecha_bautismo,
                                     $data->nombre_bautizado,
@@ -55,10 +56,10 @@ class Bautismo
 									$data->codigo_folio,
 									$data->nombre_ministro,
                                     $data->hijo
-                				));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
+                				)
+                			);
 		}
+
         catch (Throwable $t)//php7
         {
 			die($t->getMessage());
@@ -69,18 +70,28 @@ class Bautismo
 		}
 	}
 
-
-
-	public function modificarBautismo($data)
+	public function modificarbautismo($data)
 	{
 		try
 		{
-		$stm=$this->pdo->prepare("UPDATE agenda_bautismo SET nombre_parroquia = ?, fecha_bautismo = ?,
-			nombre_bautizado = ?, fecha_nacimiento = ?, nombre_hospitaldenacimiento = ?, nombre_padre = ?,
-			nombre_madre = ?, nombre_padrino = ?, nombre_madrina = ?, nombre_padrino3 = ?, codigo_folio = ?,
-			 nombre_ministro = ?,  hijo = ? WHERE idbautismo = ?");
+		$sql = "UPDATE agenda_bautismo SET
+		            nombre_parroquia = ?,
+		            fecha_bautismo = ?,
+		            nombre_bautizado = ?,
+		            fecha_nacimiento = ?,
+		            nombre_hospitaldenacimiento = ?,
+		            nombre_padre = ?,
+		            nombre_madre = ?,
+		            nombre_padrino = ?,
+		            nombre_madrina = ?,
+		            nombre_padrino3 = ?,
+		            codigo_folio = ?,
+			        nombre_ministro = ?,
+			        hijo = ?
+			        WHERE idbautismo = ?";
 
-			$stm->execute(
+			$this->pdo->prepare($sql)
+			     ->execute(
 				    array(
                             $data->nombre_parroquia,
                             $data->fecha_bautismo,
@@ -96,8 +107,8 @@ class Bautismo
 							$data->nombre_ministro,
 							$data->hijo,
                             $data->idbautismo
-					));
-			return $stm->fetch(PDO::FETCH_OBJ);
+					)
+				);
 		}
         catch (Throwable $t)//php7
         {
@@ -111,11 +122,11 @@ class Bautismo
 
 
 
-	public function obtenerbautismo($id)
+	public function obtenerbautismo1($id)
 	{
 		try
 		{
-			$stm = $this->pdo  ->prepare("SELECT  b.idbautismo, p.nombre_parroquia, DATE_FORMAT(b.fecha_bautismo, '%M %d %Y') AS fecha_bautismo, UPPER(b.nombre_bautizado) AS nombre_bautizado, b.fecha_nacimiento, b.nombre_hospitaldenacimiento, b.nombre_padre, b.nombre_madre, b.nombre_padrino, b.nombre_madrina, b.nombre_padrino3, b.codigo_folio, s.nombre as nombre_ministro,  b.hijo  from agenda_bautismo
+			$stm = $this->pdo  ->prepare("SELECT  b.idbautismo, p.nombre_parroquia, date_format(b.fecha_bautismo, '%W' ' ' '%d' ' de ' '%M'  ' del ' '%Y', 'es_ES') AS fecha_bautismo, UPPER(b.nombre_bautizado) AS nombre_bautizado, nombre_bautizado as nombre_b, DATE_FORMAT(b.fecha_nacimiento,  '%W' ' ' '%d' ' de ' '%M' ' del ' '%Y', 'es_ES') AS fecha_nacimiento,  b.nombre_hospitaldenacimiento, b.nombre_padre, b.nombre_madre, b.nombre_padrino, b.nombre_madrina, b.nombre_padrino3, b.codigo_folio, s.nombre as nombre_ministro,  b.hijo  from agenda_bautismo
 			as b inner join sacerdote as s on s.idsacerdote = b.nombre_ministro
             inner join parroquia as p on p.id_parroquia  = b.nombre_parroquia WHERE idbautismo= ?");
 
@@ -133,16 +144,37 @@ class Bautismo
 		}
 	}
 
-
-public function eliminarbautismo($id){
-	try
+	public function obtenerbautismo($id)
 	{
-		$stm = $this->pdo
-			          ->prepare("DELETE FROM agenda_bautismo WHERE idbautismo=?");
+		try
+		{
+			$stm = $this->pdo  ->prepare("SELECT  b.idbautismo, p.nombre_parroquia, b.fecha_bautismo, b.nombre_bautizado, b.fecha_nacimiento,  b.nombre_hospitaldenacimiento, b.nombre_padre, b.nombre_madre, b.nombre_padrino, b.nombre_madrina, b.nombre_padrino3, b.codigo_folio, s.nombre as nombre_ministro,  b.hijo  from agenda_bautismo
+			as b inner join sacerdote as s on s.idsacerdote = b.nombre_ministro
+            inner join parroquia as p on p.id_parroquia  = b.nombre_parroquia WHERE idbautismo= ?");
+
 
 			$stm->execute(array($id));
 
 			return $stm->fetch(PDO::FETCH_OBJ);
+		}
+        catch (Throwable $t)//php7
+        {
+			die($t->getMessage());
+        }
+		catch(Exception $e)//php5
+		{
+			die($e->getMessage());
+		}
+	}
+
+	public function eliminarbautismo($id){
+	try
+	{
+		$sql = "DELETE FROM agenda_bautismo WHERE idbautismo = $id";
+
+			$this->pdo->prepare($sql)
+			     ->execute();
+
 	}
 	 catch (Throwable $t)//php7
         {
@@ -154,7 +186,6 @@ public function eliminarbautismo($id){
 		}
 
 }
-
 
 
 	public function listarbautismo()
@@ -183,7 +214,7 @@ public function eliminarbautismo($id){
 		try
 		{
 
-			$stm = $this->pdo->prepare("SELECT count(idbautismo) as total, MONTHNAME(fecha_bautismo) as mes, YEAR(fecha_bautismo) AS año   from agenda_bautismo WHERE month(fecha_bautismo) = MONTH(CURDATE());");
+			$stm = $this->pdo->prepare("SELECT count(idbautismo) as total, DATE_FORMAT(fecha_bautismo, '%M', 'es_ES') as mes, YEAR(fecha_bautismo) AS año   from agenda_bautismo WHERE month(fecha_bautismo) = MONTH(CURDATE());");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -193,26 +224,6 @@ public function eliminarbautismo($id){
 			die($e->getMessage());
 		}
 	}
-
-
-	public function obtenerbautismofecha($data)
-	{
-		try
-		{
-		$stm = $this->pdo->prepare('SELECT   from agenda_bautismo  where fecha_bautismo BETWEEN "' . $fechadesde .'" AND "' . $fechahasta. '" ORDER BY DESC;');
-			$stm->execute(array(
-								$data->$fechadesde,
-								$data->$fechahasta
-							));
-
-			return $stm->fetchAll(PDO::FETCH_OBJ);
-		}
-		catch(Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
-
 
 }
 

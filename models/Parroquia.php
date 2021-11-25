@@ -26,25 +26,25 @@ class Parroquia
 	}
 
 
-
-	public function guardarParroquia($data)
+public function guardarparroquia($data)
 	{
 		try
 		{
-			$stm = $this->pdo
-			          ->prepare("INSERT INTO `parroquia`(nombre_parroquia, direccion, departamento, email, telefono, encargado) VALUES (?,?,?,?,?,?)");
+			$sql = "INSERT INTO parroquia (nombre_parroquia, direccion, departamento, email, telefono, encargado) VALUES (?,?,?,?,?,?)";
 
 
-			$stm->execute(array(
+			$this->pdo->prepare($sql)
+		     ->execute(
+				array(
                                     $data->nombre_parroquia,
                                     $data->direccion,
                                     $data->departamento,
                                     $data->email,
                                     $data->telefono,
                                     $data->encargado
-                				));
+                				)
+                			);
 
-			return $stm->fetch(PDO::FETCH_OBJ);
 		}
         catch (Throwable $t)//php7
         {
@@ -56,15 +56,21 @@ class Parroquia
 		}
 	}
 
-
-
-	public function modificarParroquia($data)
+public function modificarparroquia($data)
 	{
 		try
 		{
-			$stm=$this->pdo->prepare("UPDATE parroquia SET nombre_parroquia = ?, direccion = ?, departamento = ?, email = ?, telefono = ?, encargado = ? WHERE id_parroquia = ?");
+			$sql = "UPDATE parroquia SET
+			            nombre_parroquia = ?,
+			            direccion = ?,
+			            departamento = ?,
+			            email = ?,
+			            telefono = ?,
+			            encargado = ?
+			            WHERE id_parroquia = ?";
 
-			$stm->execute(
+			$this->pdo->prepare($sql)
+			     ->execute(
 				    array(
                             $data->nombre_parroquia,
                                     $data->direccion,
@@ -73,9 +79,10 @@ class Parroquia
                                     $data->telefono,
                                     $data->encargado,
                                     $data->id_parroquia
-					));
+					)
 
-					return $stm->fetch(PDO::FETCH_OBJ);
+					);
+
 		}
         catch (Throwable $t)//php7
         {
@@ -111,15 +118,14 @@ class Parroquia
 		}
 	}
 
+
 public function eliminarparroquia($id){
 	try
 	{
-		$stm = $this->pdo
-			          ->prepare("delete from parroquia where id_parroquia=?");
+		$sql = "delete from parroquia where id_parroquia = $id";
 
-			$stm->execute(array($id));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
+			$this->pdo->prepare($sql)
+			     ->execute();
 	}
 	 catch (Throwable $t)//php7
         {
@@ -127,60 +133,10 @@ public function eliminarparroquia($id){
         }
 		catch(Exception $e)//php5
 		{
-			die($e->getMessage());
+		die($e->getMessage());
 		}
 
 }
-
-
-
-public function buscarParroquia($id)
-	{
-		try{
-			$stm = $this->pdo
-			          ->prepare("CALL ps_buscar_parroquia(?)");
-
-
-
-		  $stm->execute(array($id));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
-		}
-        catch (Throwable $t)//php7
-        {
-			die($t->getMessage());
-        }
-		catch(Exception $e)//php5
-		{
-			die($e->getMessage());
-		}
-	}
-
-
-
-
-    public function obtenerparroquia1($nombre_parroquia)
-	{
-		try
-		{
-			$stm = $this->pdo
-			          ->prepare("CALL ps_obtener_parroquia1(?)");
-
-
-			$stm->execute(array($id));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
-		}
-        catch (Throwable $t)//php7
-        {
-			die($t->getMessage());
-        }
-		catch(Exception $e)//php5
-		{
-			die($e->getMessage());
-		}
-	}
-
 
 	public function listarparroquia()
 	{

@@ -43,9 +43,8 @@ class Sacerdote
                                     $data->nacionalidad,
                                     $data->periodo_desde,
                                     $data->periodo_hasta
-                				));
-
-			return $stm->fetch(PDO::FETCH_OBJ);
+                				)
+							);
 		}
         catch (Throwable $t)//php7
         {
@@ -59,13 +58,23 @@ class Sacerdote
 
 
 
-	public function modificarSacerdote($data)
+	public function modificarsacerdote($data)
 	{
 		try
 		{
-			$stm=$this->pdo->prepare("UPDATE sacerdote SET nombre = ?, apellido = ?, cargo = ?, fecha_nacimiento = ?, dui = ?, nacionalidad = ?, periodo_desde = ?, periodo_hasta = ?  WHERE idsacerdote = ?");
+			$sql = "UPDATE sacerdote SET
+			            nombre = ?,
+			            apellido = ?,
+			            cargo = ?,
+			            fecha_nacimiento = ?,
+			            dui = ?,
+			            nacionalidad = ?,
+			            periodo_desde = ?,
+			            periodo_hasta = ?
+			            WHERE idsacerdote = ?";
 
-			$stm->execute(
+		$this->pdo->prepare($sql)
+			     ->execute(
 				    array(
                             $data->nombre,
                             $data->apellido,
@@ -76,8 +85,8 @@ class Sacerdote
                             $data->periodo_desde,
                             $data->periodo_hasta,
                             $data->idsacerdote
-					));
-			return $stm->fetch(PDO::FETCH_OBJ);
+					)
+				);
 		}
         catch (Throwable $t)//php7
         {
@@ -88,6 +97,8 @@ class Sacerdote
 			die($e->getMessage());
 		}
 	}
+
+
 
 
 
@@ -113,14 +124,13 @@ class Sacerdote
 		}
 	}
 
-
 public function eliminarsacerdote($id){
 	try
 	{
-		$stm = $this->pdo ->prepare("DELETE  from sacerdote where idsacerdote=?");
-			$stm->execute(array($id));
+		$sql = "DELETE  from sacerdote where idsacerdote = $id";
+			$this->pdo->prepare($sql)
+			     ->execute();
 
-			return $stm->fetch(PDO::FETCH_OBJ);
 	}
 	 catch (Throwable $t)//php7
         {
@@ -131,6 +141,8 @@ public function eliminarsacerdote($id){
 			die($e->getMessage());
 		}
 }
+
+
 
 
 	public function listarsacerdote()
