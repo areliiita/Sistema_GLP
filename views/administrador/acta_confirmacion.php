@@ -64,7 +64,7 @@
     <h2 style="margin-top:50px;margin-bottom:60px;text-align:justify;"><b> FE DE CONFIRMACIÓN</b></h2>
     </p>
 
-    <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+    <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
      Partida de Confirmación de: <b><?php echo $confirmacion->nombre . " " .$confirmacion->apellidos; ?></b>
      <br>
      El infrascrito   <b> <u>  <?php
@@ -85,12 +85,12 @@
 
 
 
- <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">El Excelentísimo Señor obispo de la Diócesis <?php echo $confirmacion->diosesis; ?>, Monseñor <?php echo $confirmacion->obispo; ?>,
+ <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">El Excelentísimo Señor obispo de la Diócesis <?php echo $confirmacion->diosesis; ?>, Monseñor <?php echo $confirmacion->obispo; ?>,
   quien impartió el sacramento de la confirmación a: <b><?php echo $confirmacion->nombre . " " .$confirmacion->apellidos; ?></b> de  <?php echo $confirmacion->edad; ?> años de edad, el día <?php echo $confirmacion->fecha_confirmacion; ?>, en  <?php echo $confirmacion->confirmado_otro_lugar; ?> de  la Parroquia <b><?php echo $confirmacion->parroquia_bautismo; ?></b>, siendo <?php echo $confirmacion->hijo; ?> de, <?php echo $confirmacion->nombre_padre; ?> y <?php echo $confirmacion->nombre_madre; ?>.
   <br>
      <b><u>Padrinos: </b><?php echo $confirmacion->nombre_padrino; ?>,<?php echo $confirmacion->nombre_madrina; ?></u>.</p>
 
-     <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+     <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
     La presente es copia fiel del  original, la que  me remito y la expido en la Oficina Paroquial  el día
 <?php
 date_default_timezone_set('America/El_Salvador');
@@ -98,11 +98,11 @@ $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Domingo
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
 echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-?>.<br><br>
+?>.<br>
 </p>
 
 
- <p style="text-align:center;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+ <p style="text-align:center;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
   <?php
             if (isset($_POST['nombreParroco']))
             {
@@ -119,7 +119,7 @@ echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'
 
  <p style="text-align:justify;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
           <b>AUTENTICIDAD<br></b>Se certifica que el sello de la Paroquia  de__________________________________
-<br>
+<br><br>
 Y la firma del Párroco P.___________________________________son auténticos.
 <br>
 SELLO

@@ -26,12 +26,9 @@ $modeloParroquia = new Parroquia();
 			<div class="mdl-cell mdl-cell--12-col">
 				<div class="full-width panel mdl-shadow--2dp">
 					<div class="full-width panel-tittle bg-primary text-center tittles">
-						<i class="zmdi zmdi-border-color"></i> Ingresar un nuevo registro
+						<i class="zmdi zmdi-border-color"></i>Modificar el registro
 					</div>
 					<div class="full-width panel-content">
-
-
-
 <form method="POST" action="?c=Comunion&a=Guardar"  enctype="multipart/form-data">
 							<div class="mdl-grid">
 	 <input type="hidden" name="txtIdcomunion" value="<?php echo $comunion->idprimeracomunion; ?>" />
@@ -79,23 +76,16 @@ $modeloParroquia = new Parroquia();
 				</div>
 			</div>
 
-				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtNombre_parroquia_bautismo" value="<?php echo $comunion->parroquia_bautismo; ?>">
-													<option value="" disabled="" selected="">Seleccionar Parroquia</option>
-													<?php
-													if ($comunion->parroquia_bautismo !=null) {
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+	<div class="mdl-textfield mdl-js-textfield">
+				<select class="mdl-textfield__input" name="txtNombre_parroquia_bautismo" value="<?php echo $comunion->parroquia_bautismo; ?>" >
+				<?php foreach ($modeloParroquia->listarParroquia() as $r):?>
+					<option value="<?php echo $r->id_parroquia; ?>" <?php if($comunion->parroquia_bautismo==$r->id_parroquia) echo "selected"; ?> ><?php echo $r->nombre_parroquia; ?></option>
+				<?php endforeach; ?>
 
-													$objParroquia = $modeloParroquia->obtenerparroquia($comunion->parroquia_bautismo);
-													echo  '<option value="'.$objParroquia->nombre_parroquia.'" selected>'.$objParroquia->nombre_parroquia.'</option>';
-													}else{echo "strring";}
-													 ?>
-													 <?php foreach($modeloParroquia->listarParroquia() as $r): ?>
-													 	    <option value="<?php echo $r->id_parroquia; ?>"><?php echo $r->nombre_parroquia; ?></option>
-													 	    <?php endforeach; ?>
-												</select>
-											</div>
-										</div>
+					</select>
+				</div>
+			</div>
 
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
@@ -135,18 +125,12 @@ $modeloParroquia = new Parroquia();
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtCelebrante_de_comunion" value="<?php echo $comunion->celebrante_comunion; ?>">
-													<option value="" disabled="" selected="">Seleccionar Celebrante</option>
-													<?php
-													if ($comunion->celebrante_comunion !=null) {
+												<select class="mdl-textfield__input" name="txtCelebrante_de_comunion" value="<?php echo $comunion->celebrante_comunion; ?>" >
 
-													$objSacerdote = $modeloSacerdote->obtenersacerdote($comunion->celebrante_comunion);
-													echo  '<option value="'.$objSacerdote->nombre.'" selected>'.$objSacerdote->nombre.'</option>';
-													}else{echo "string";}
-													 ?>
-													 <?php foreach($modeloSacerdote->listarSacerdote() as $r): ?>
-													 	    <option value="<?php echo $r->idsacerdote; ?>"><?php echo $r->nombre; ?></option>
-													 	    <?php endforeach; ?>
+												<?php foreach ($modeloSacerdote->listarSacerdote() as $r):?>
+												<option value="<?php echo $r->idsacerdote; ?>" <?php if($comunion->celebrante_comunion==$r->idsacerdote) echo "selected"; ?> ><?php echo $r->nombre; ?></option>
+												<?php endforeach; ?>
+
 												</select>
 											</div>
 										</div>
@@ -163,4 +147,3 @@ $modeloParroquia = new Parroquia();
 				</div>
 			</div>
 		</div>
-	</section>

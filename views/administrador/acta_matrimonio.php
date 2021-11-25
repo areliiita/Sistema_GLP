@@ -60,11 +60,11 @@
 
 <div id="acta_matrimonio">
 <div style="background-color:#E6E6FA">
-    <img style="float:left;margin-bottom:0px;margin-left: 40px; margin-right:40px; margin-top: 20px;white-space:pre;" src="./views/administrador/logo/logo.png" width="150px" alt="Logo"> &nbsp;
+    <img style="float:left;margin-bottom:2px;margin-left: 40px; margin-right:40px; margin-top: 10px;white-space:pre;" src="./views/administrador/logo/logo.png" width="150px"  alt="Logo"> &nbsp;
     <p>
-        <br>
-    <h2 style="margin-top:50px;margin-bottom:60px;text-align:justify;"><b>ACTA DE MATRIMONIO</b></h2>
+    <h2 style="margin-top:70px;margin-bottom:60px;text-align:justify;"><b>ACTA DE MATRIMONIO</b></h2>
     </p>
+
 
     <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
      Hoy  a las <u><?php echo $matrimonio->hora_matrimonio; ?></u> horas del día <u><?php echo $matrimonio->fecha_matrimonio; ?></u> en la Parroquia <b>
@@ -104,12 +104,12 @@ echo $dias[date('w')]." ".date('d')." del mes de  ".$meses[date('n')-1]. " del a
 
  <p style="text-align:justify;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
           <b>AUTENTICIDAD<br></b>Se certifica que el sello de la Paroquia  de__________________________________
-<br>
+<br><br>
 Y la firma del Párroco P.___________________________________son auténticos.
 <br>
 SELLO.
 </P>
-          <p style="text-align:right;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
+  <p style="text-align:right;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
          VICARIO GENERAL
         </p>
 

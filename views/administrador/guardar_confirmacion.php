@@ -69,7 +69,7 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtConfirmado_otro_lugar" required="">
+										<input class="mdl-textfield__input" type="text" name="txtConfirmado_otro_lugar">
 										<label class="mdl-textfield__label" >Ingrese el lugar de la confirmación.</label>
 									</div>
 								</div>
@@ -114,7 +114,8 @@ $modeloParroquia = new Parroquia();
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
 												<select class="mdl-textfield__input" name="txtMinistro" required="">
-													<option value="" disabled="" selected="">Seleccionar Ministro</option>
+													<option value="" disabled="" selected="">Seleccionar Ministro actual de la parroquia</option>
+
 													<?php
 													if ($confirmacion->ministro !=null) {
 
@@ -136,27 +137,16 @@ $modeloParroquia = new Parroquia();
 													<option value="" disabled="" selected="">Seleccionar Obispo</option>
 													<?php
 													if ($confirmacion->obispo !=null) {
-
 													$objObispo = $modeloObispo->obtenerobispo($confirmacion->obispo);
-													echo  '<option value="'.$objObispo->nombre.'" selected>'.$objObispo->nombre.'</option>';
+					echo  '<option value="'.$objObispo->nombre.' '.$objObispo->apellido.' "selected>'.$objObispo->nombre.' '.$objObispo->apellido.'</option>';
 													}else{echo "string";}
 													 ?>
 													 <?php foreach($modeloObispo->listarobispo() as $r): ?>
-													 	    <option value="<?php echo $r->idobispo; ?>"><?php echo $r->nombre; ?></option>
+													 	    <option value="<?php echo $r->idobispo; ?>"><?php echo $r->nombre. " " .$r->apellido; ?></option>
 													 	    <?php endforeach; ?>
 												</select>
 											</div>
 										</div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -241,4 +231,3 @@ $modeloParroquia = new Parroquia();
 				</div>
 			</div>
 		</div>
-	</section>

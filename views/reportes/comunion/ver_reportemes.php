@@ -1,3 +1,4 @@
+
 <style>
      #printable { display: none; }
 
@@ -26,9 +27,9 @@
 
 <div class="mdl-grid">
 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
- <a  href="javascript:Imprimir_Bautismo('reporte_bautismo')"><button type="submit" class="btn btn bg-primary btn-raised btn-md" style="color:white;"><i class="fas fa-print"></i> IMPRIMIR</button></a>
- </div>
- </div>
+<a  href="javascript:Imprimir_Bautismo('reporte_bautismo')"><button type="submit" class="btn btn bg-primary btn-raised btn-md" style="color:white;"><i class="fas fa-print"></i> IMPRIMIR</button></a>
+    </div>
+     </div>
 <?php endif?>
 
 <div id="reporte_bautismo" style="margin-bottom: 40px;">
@@ -37,25 +38,27 @@
     <p>
     <br>
 
-    <h2 style="margin-top:50px;margin-bottom:50px;text-align:center;"><b>PARROQUIA SAN ANTONIO DE PADUA</b></h2>
+    <h3 style="margin-top:50px;margin-bottom:50px;text-align:center;"><b>PARROQUIA SAN ANTONIO DE PADUA</b></h3>
     </p>
      <br><br><br>
 <div class="container">
 <div class="container-fluid">
             <div class="page-header">
-              <h3 class="text-cente" style="text-align: center;"> REPORTE MENSUAL DE BAUTISMOS </h3>
+              <h4 class="text-cente"style="text-align: center;"> REPORTE MENSUAL DE PRIMERA COMUNIÓN </h4>
             </div>
         </div>
-							<table  class="table table-striped table-bordered" style=" width: 80%; border-collapse: collapse;border: 1px solid #000; margin: 0 auto; font-size: 15px;">
-									<thead style="background-color: #C0C0C0;"><tr>
-											<th   style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">AÑO</th>
-											<th style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">MES</th>
-                                            <th style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">TOTAL DE BAUTISMOS</th>
-                                                </tr>
-									</thead>
-									<tbody style="font-size: 20px;">
+                            <table  class="table table-striped table-bordered" style=" width: 90%; border-collapse: collapse;border: 1px solid #000; margin: 0 auto;">
+                                    <thead style="background-color: #C0C0C0; font-size: 16px;" ><tr>
+                                        </tr>
+                                            <th  style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; ">AÑO</th>
+                                            <th   style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">MES</th>
+                                            <th  style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">TOTAL DE COMUNIONES</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size: 20px;">
                                           <tr>
-          <?php foreach($reportes = $bautismo->obtenerbautismomes() as $r): ?>
+          <?php foreach($reportes = $comunion->obtenercomunionmes() as $r): ?>
 
             <td style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">
               <?php echo $r->año; ?>
@@ -66,6 +69,7 @@
             <td style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">
       <?php echo $r->total;?>
             </td>
+
           </tr>
           <?php endforeach;//Fin de bucle ?>
         </tbody>
@@ -84,10 +88,9 @@
             }
         ?>
         </p>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-    <div >
-
+    <div>
 
            <p style="text-align:right;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
         Parroquia San Antonio de Padua <br>
@@ -96,8 +99,8 @@
             Tel.7203-6039
          </p>
          </div>
-         </div>
-         </div>
+          </div>
+          </div>
 
 <script language="Javascript">
   function Imprimir_Bautismo(nombre)

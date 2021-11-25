@@ -3,10 +3,11 @@
 			<div class="page-header">
 			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL  DE REGISTROS DE CONFIRMACIÓN</h1>
 			</div>
+			<p class="lead"></p>
 		</div>
-							<div class="table-responsive">
-								<table id="employee_data" class="table table-striped table-bordered">
-									<thead>
+		<div class="table-responsive">
+								<table id="employee_data" class="table  table-bordered" style="background-color:#EAF2F8;">
+									<thead style="background-color: black; color: white;">
 										<tr>
 											<th class="text-center">N°</th>
 											<th class="text-center">Nombre</th>
@@ -44,8 +45,7 @@
                                        <td><a href="?c=Confirmacion&a=ConsultarActaConfirmacion&id=<?php echo $r->idconfirmacion; ?>" class="btn btn-info btn-raised btn-xs"><i class="fas fa-print"></i></a></td>
 
                                         </tr>
-									<?php endforeach; ?>
-									</tbody>
+									<?php endforeach; ?></tbody>
 								</table>
 			</div>
 		</div>

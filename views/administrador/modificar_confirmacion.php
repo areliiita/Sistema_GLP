@@ -29,7 +29,7 @@ $modeloParroquia = new Parroquia();
 			<div class="mdl-cell mdl-cell--12-col">
 				<div class="full-width panel mdl-shadow--2dp">
 					<div class="full-width panel-tittle bg-primary text-center tittles">
-						<i class="zmdi zmdi-border-color"></i> Nuevo Registro
+						<i class="zmdi zmdi-border-color"></i> Modificar el Registro
 					</div>
 
 					<div class="full-width panel-content">
@@ -236,4 +236,4 @@ $modeloParroquia = new Parroquia();
 				</div>
 			</div>
 		</div>
-	</section>
+

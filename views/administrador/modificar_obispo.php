@@ -21,7 +21,7 @@
 					<div class="full-width panel-content">
 						<form method="post" action="?c=Obispo&a=Guardar" enctype="multipart/form-data">
 							<div class="mdl-grid">
-	<input type="hidden" name="txtIdobispo" value="<?php echo $obispo->idobispo; ?>" />
+	<input type="hidden" name="txtIdobispo" value="<?php echo $obispo->idobispo; ?>">
 
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
@@ -75,4 +75,5 @@
 				</div>
 			</div>
 		</div>
-	</section>
+		<br><br><br><br>
+

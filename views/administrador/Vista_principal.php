@@ -4,9 +4,6 @@
   }
 ?>
 
-
-    <link rel="stylesheet" href="./css/main.css">
-        <!-- Content page -->
         <div class="container-fluid">
             <div class="page-header">
               <h1 class="text-center"> TOTAL DE REGISTROS <small></small></h1>
@@ -20,8 +17,12 @@
                 <div class="full-box tile-icon text-center blue">
                 <a href="?c=Bautismo&a=Consultar"><img src="./assets/img/bautizo.jpeg" alt="" style="height: 120px; margin-top: 5px;"></a>
                 </div>
+               <?php $total = 0; ?>
+                <?php foreach($this->model->listarbautismo() as $r): ?>
+                    <?php $total++; ?>
+                    <?php endforeach; ?>
                 <div class="full-box tile-number text-titles">
-                    <p class="full-box">7</p>
+                    <p class="full-box"><?php echo $total ?></p>
                     <small>Registrados</small>
                 </div>
             </article>
@@ -30,10 +31,14 @@
                     CONFIRMACIÓN
                 </div>
                 <div class="full-box tile-icon text-center">
-            <img src="./assets/img/confirmacion.jpg" alt="" style="height: 130px;">
+            <a href="?c=Confirmacion&a=Consultar"><img src="./assets/img/confirmacion.jpg" alt="" style="height: 130px;"></a>
                 </div>
+                <?php $totalconfirmacion = 0; ?>
+                <?php foreach($this->model1->listarconfirmacion() as $r): ?>
+                    <?php $totalconfirmacion++; ?>
+                    <?php endforeach; ?>
                 <div class="full-box tile-number text-titles">
-                    <p class="full-box">10</p>
+                    <p class="full-box"><?php echo $totalconfirmacion ?></p>
                     <small>Registrados</small>
                 </div>
             </article>
@@ -42,10 +47,14 @@
                     PRIMERA COMUNIÓN
                 </div>
                 <div class="full-box tile-icon text-center">
-<img src="  ./assets/img/comunion.jpeg" alt="" style="height: 130px; margin-top: 5px;">
+           <a href="?c=Comunion&a=Consultar"><img src="  ./assets/img/comunion.jpeg" alt="" style="height: 130px; margin-top: 5px;"></a>
                 </div>
+                <?php $totalcomunion = 0; ?>
+                <?php foreach($this->model2->listarcomunion() as $r): ?>
+                    <?php $totalcomunion++; ?>
+                    <?php endforeach; ?>
                 <div class="full-box tile-number text-titles">
-                    <p class="full-box">70</p>
+                    <p class="full-box"><?php echo $totalcomunion ?></p>
                     <small>Registrados</small>
                 </div>
             </article>
@@ -54,10 +63,14 @@
                     MATRIMONIOS
                 </div>
                 <div class="full-box tile-icon text-center">
-                    <img src="./assets/img/matrimonio.jpeg" alt="" style="height: 140px;">
+                   <a href="?c=Matrimonio&a=Consultar"> <img src="./assets/img/matrimonio.jpeg" alt="" style="height: 140px;"> </a>
                 </div>
+                <?php $totalmatrimonio = 0; ?>
+                <?php foreach($this->model3->listarmatrimonio() as $r): ?>
+                    <?php $totalmatrimonio++; ?>
+                    <?php endforeach; ?>
                 <div class="full-box tile-number text-titles">
-                    <p class="full-box">70</p>
+                    <p class="full-box"><?php echo $totalmatrimonio ?></p>
                     <small>Registrados</small>
                 </div>
             </article>
@@ -119,7 +132,7 @@
 
         </div>
     </section>
-    </section>
+
     <!-- Dialog help -->
     <div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
         <div class="modal-dialog" role="document">
@@ -139,20 +152,5 @@
             </div>
         </div>
     </div>
-    <!--====== Scripts -->
-    <script src="./js/jquery-3.1.1.min.js"></script>
-    <script src="./js/sweetalert2.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/material.min.js"></script>
-    <script src="./js/ripples.min.js"></script>
-    <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="./js/main.js"></script>
-    <script>
-        $.material.init();
-    </script>
-       <script defer src="./fonts/js/brands.js"></script>
-  <script defer src="./fonts/js/solid.js"></script>
-  <script defer src="./fonts/js/fontawesome.js"></script>
-   
-</body>
-</html>
+    </div>
+    <br><br><br><br><br><br><br><br> <br>   <br>    <br> <br>

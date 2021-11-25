@@ -1,102 +1,104 @@
+
+<style>
+     #printable { display: none; }
+
+    @media print
+    {
+        #non-printable { display: none; }
+        #printable { display: block; }
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $("#asignar-p").click(function(event) {
+            var nombre = $("#nombre-p").val();
+            alert(nombre);
+            event.preventDefault();
+        });
+    });
+</script>
+<div style="margin-left: 10px;margin-bottom: 15px;">
+    <form method="post">
+        <input type="text" class="form-control" placeholder="Nombre Parroco" name="nombre_p" required="ON" style="width:300px">
+        <button class="btn btn-success" name="nombreParroco">Asignar Parroco a Imprimir en Reporte</button>
+    </form>
+</div>
+<?php if (isset($_POST['nombreParroco'])):?>
+
 <div class="mdl-grid">
 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-<a  href="javascript:Imprimir_Reporte('matrimonio_mes')"><button type="submit" class="btn btn bg-primary btn-raised btn-md" style="color:white;"><i class="fas fa-print"></i>     IMPRIMIR</button></a>
+<a  href="javascript:Imprimir_Bautismo('reporte_bautismo')"><button type="submit" class="btn btn bg-primary btn-raised btn-md" style="color:white;"><i class="fas fa-print"></i> IMPRIMIR</button></a>
     </div>
      </div>
+<?php endif?>
 
-<div id="matrimonio_mes" style="margin-bottom: 40px;">
+<div id="reporte_bautismo" style="margin-bottom: 40px;">
  <div  style="background-color:ghostwhite;">
-  <img style="float:left;margin-bottom:15px;margin-left: 20px; margin-right: 20px;white-space:pre;" src=" ./views/administrador/logo/logo.png"  width="150px" alt="Logo">  &nbsp;
+  <img style="float:left;margin-bottom:15px;margin-left: 20px; margin-right: 20px;white-space:pre ; margin-top: 20px" src=" ./views/administrador/logo/logo.png"  width="150px" alt="Logo">  &nbsp;
     <p>
     <br>
-
-    <h3 style="margin-top:50px;margin-bottom:50px;text-align:center;"><b>PARROQUIA SAN ANTONIO DE PADUA</b></h3>
+    <h2 style="margin-top:50px;margin-bottom:50px;text-align:center;"><b>PARROQUIA SAN ANTONIO DE PADUA</b></h2>
     </p>
-     <br>
-
-     <div class="container-fluid">
-         <div class="page-header">
-         <h3 class="text-titles" style="text-align: center;">  REGISTROS DE FE DE BAUTISMOS MENSUALES</h3>
+     <br><br><br>
+<div class="container">
+<div class="container-fluid">
+            <div class="page-header">
+              <h3 class="text-cente" style="text-align: center;"> REPORTE MENSUAL DE MATRIMONIOS</h3>
             </div>
         </div>
-        <hr>
-        <hr>
+                            <table  class="table table-striped table-bordered" style=" width: 90%; border-collapse: collapse;border: 1px solid #000; margin: 0 auto;">
+                              <thead style="background-color: #C0C0C0; font-size: 15px;">
+                                <tr>
+                                            <th style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">AÑO</th>
+                                            <th style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">MES</th>
+                                            <th style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">TOTAL DE MATRIMONIOS</th>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <ul class="nav nav-tabs" style="margin-bottom: 15px; background-color:#00798f">
-
-        <li class="bg-primary"><a style="color: white; "> <b> Informe General</b></a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div >
-                                <table class="table table-hover table-condensed table-bordered" style="border-bottom: 2px black;">
-                                    <thead><tr>
-                                            <th class="text-center">N°</th>
-                                            <th class="text-center">Fecha de Matrimonio</th>
-                                            <th class="text-center">Ministro</th>
-                                            <th class="text-center">Jurisdicción</th>
-                                            <th class="text-center">Folio</th>
-                                            <th class="text-center">Padre_novio</th>
-                                            <th class="text-center">Madre_novio</th>
-                                            <th class="text-center">Novio</th>
-                                            <th class="text-center">Padre_novia</th>
-                                            <th class="text-center">Madre_novia</th>
-                                            <th class="text-center">Novia</th>
-                                            <th class="text-center">Parroquia</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody  style="font-size: 20px;">
+                                          <tr>
           <?php foreach($reportes = $matrimonio->obtenermatrimoniomes() as $r): ?>
-          <tr>
-            <td>
-              <?php echo $r->idmatrimonio; ?>
+
+            <td style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;" >
+              <?php echo $r->año; ?>
             </td>
-            <td>
-     <?php echo $r->fecha_matrimonio;?>
+            <td style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">
+     <?php echo $r->mes; ?>
             </td>
-            <td>
-      <?php echo $r->ministro_matrimonio; ?>
+            <td style="width: 25%; text-align: center;vertical-align: top; border: 1px solid #000; border-spacing: 0;">
+      <?php echo $r->total;?>
             </td>
-            <td>
-      <?php echo $r->jurisdiccion; ?>
-            </td>
-            <td>
-      <?php echo $r->folio; ?>
-            </td>
-            <td>
-      <?php echo $r->padre_novio; ?>
-            </td>
-            <td>
-               <?php echo $r->madre_novio; ?>
-            </td>
-            <td>
-             <?php echo $r->nombrecompleto_novio; ?>
-            </td>
-             <td>
-              <?php echo $r->padre_novia; ?>
-            </td>
-            <td>
-              <?php echo $r->madre_novia; ?>
-            </td>
-             <td>
-               <?php echo $r->nombrecompleto_novia; ?>
-            </td>
-             <td>
-               <?php echo $r->parroquia; ?>
-            </td>
+
           </tr>
           <?php endforeach;//Fin de bucle ?>
         </tbody>
       </table>
-    </div>
-</div>
   </div>
-</div>
+
+  <br><br><br><br><br><br><br><br>
+  <p style="text-align:center;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+    <?php
+            if (isset($_POST['nombreParroco']))
+            {
+                echo"Pbro.". $_POST['nombre_p']."<br> Parroco";
+            }
+        ?>
+        </p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div>
+
+           <p style="text-align:right;margin-left:80px;margin-right:50px;line-height: 20pt; font-size: 20px;">
+        Parroquia San Antonio de Padua <br>
+            Agua Zarca San Antonio km 49 1/2, Carretera a Ilobasco, Cabañas<br>
+            E-mail: sanantoniodepaduailob@gmail.com <br>
+            Tel.7203-6039
+         </p>
+         </div>
+          </div>
+          </div>
 
 <script language="Javascript">
-  function Imprimir_Reporte(nombre)
+  function Imprimir_Bautismo(nombre)
   {
   var ficha = document.getElementById(nombre);
   var Ventana_Impresion = window.open(' ', 'popimpr');

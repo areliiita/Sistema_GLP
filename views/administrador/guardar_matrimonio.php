@@ -186,4 +186,3 @@ $modeloParroquia = new Parroquia();
 				</div>
 			</div>
 		</div>
-	</section>

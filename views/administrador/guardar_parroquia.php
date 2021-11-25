@@ -28,44 +28,44 @@
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" name="txtNombre_parroquia">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese nombre de la parroquia.</label>
+				<input class="mdl-textfield__input" type="text" name="txtNombre_parroquia" required="">
+					<label class="mdl-textfield__label">Ingrese nombre de la parroquia.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" name="txtDireccion">
-				<label class="mdl-textfield__label" for="urlCompany">Ingrese dirección.</label>
+				<input class="mdl-textfield__input" type="text" name="txtDireccion" required="">
+				<label class="mdl-textfield__label">Ingrese dirección.</label>
 			</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtDepartamento">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese departamento.</label>
+					<input class="mdl-textfield__input" type="text" name="txtDepartamento" required="">
+					<label class="mdl-textfield__label" >Ingrese departamento.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtEmail">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese email de la parroquia.</label>
+					<input class="mdl-textfield__input" type="email" name="txtEmail" required="">
+					<label class="mdl-textfield__label">Ingrese email de la parroquia.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="int" name="txtTelefono">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese número de teléfono.</label>
+					<input class="mdl-textfield__input" type="int" name="txtTelefono" required="">
+					<label class="mdl-textfield__label">Ingrese número de teléfono.</label>
 				</div>
 			</div>
 
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtEncargado">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre del encargardo de la parroquia.</label>
+					<input class="mdl-textfield__input" type="text" name="txtEncargado" required="">
+					<label class="mdl-textfield__label">Ingrese el nombre del encargardo de la parroquia.</label>
 				</div>
 			</div>
 </div>
@@ -80,5 +80,5 @@
 				</div>
 			</div>
 		</div>
-	</section>
+		<br><br><br>
 

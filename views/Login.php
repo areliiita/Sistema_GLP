@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="./css/main.css">
-<link rel="shortcut icon" type="../image/x-icon" href="./assets/img/icono.png">
+<link rel="shortcut icon" type="../image/x-icon" href="./assets/img/avatar.jpeg">
 </head>
 <body class="cover" style="background-image: url(./assets/img/fondo.jpeg);">
 	<form action="?c=Login&a=Entrar"  class="full-box logInForm" method="POST" enctype="multipart/form-data">
@@ -28,8 +28,10 @@
 		  <p class="help-block">Escribe tú contraseña</p>
 		</div>
 
+
 		<div class="form-group text-center">
 			<button type="submit"  class="btn btn-raised btn-info"> Iniciar sesión</button>
+			<p>Parroquia, San Antonio de padua</p>
 		</div>
 	</form>
 	

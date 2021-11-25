@@ -57,13 +57,11 @@
 <?php endif?>
 
 
-
-
 <div id="acta_bautismo">
 <div  style="background-color:#E6E6FA">
-    <img style="float:left;margin-bottom:0px; margin-top: 10px;margin-left: 40px; margin-right: 40px;white-space:pre;" src="./views/administrador/logo/logo.png" width="130px" alt="Logo"> &nbsp;
+    <img style="float:left;margin-bottom:0px; margin-top: 10px;margin-left: 40px; margin-right: 40px;white-space:pre;" src="./views/administrador/logo/logo.png" width="130px" height="130px" alt="Logo"> &nbsp;
     <p>
-    <h2 style="margin-top:50px;margin-bottom:60px;text-align:justify;"><b> FE DE BAUTISMO</b></h2>
+    <h2 style="margin-top:60px;margin-bottom:60px;text-align:justify;"><b> FE DE BAUTISMO</b></h2>
     </p>
     <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
      Partida de Bautismo de: <b><?php echo $bautismo->nombre_bautizado; ?></b>.<br>
@@ -84,7 +82,7 @@
      De la Parroquia <b><u><?php echo $bautismo->nombre_parroquia; ?></b>, Ilobasco,Cabañas</u> certifica que:
     </p>
          <p style="text-align:justify;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;"> En la Parroquia <b><?php echo $bautismo->nombre_parroquia; ?></b>, Ilobasco a
-<?php echo $bautismo->fecha_bautismo; ?>. Recibió El Sacramento del Bautismo: <b><?php echo $bautismo->nombre_bautizado; ?></b>, que nació el <?php echo $bautismo->fecha_nacimiento; ?>, en el  <?php echo $bautismo->nombre_hospitaldenacimiento; ?>, siendo <?php echo $bautismo->hijo; ?> de <?php echo $bautismo->nombre_padre; ?> y de <?php echo $bautismo->nombre_madre; ?>.
+<?php echo $bautismo->fecha_bautismo; ?>. Recibió El Sacramento del Bautismo: <b><?php echo $bautismo->nombre_b; ?></b>, que nació el <?php echo $bautismo->fecha_nacimiento; ?>, en el  <?php echo $bautismo->nombre_hospitaldenacimiento; ?>, siendo <?php echo $bautismo->hijo; ?> de <?php echo $bautismo->nombre_padre; ?> y de <?php echo $bautismo->nombre_madre; ?>.
          <br>
      <b><u>Padrinos: </b><?php echo $bautismo->nombre_padrino; ?>, <?php echo $bautismo->nombre_madrina; ?>  <?php echo $bautismo->nombre_padrino3;?>.</u>
      <br>
@@ -100,7 +98,7 @@ $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Domingo
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
 echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-?>.<br>
+?>.
 </p>
 
  <p style="text-align:center;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
@@ -113,7 +111,7 @@ echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'
     <?php
             if (isset($_POST['nombreVicario']))
             {
-                echo $_POST['nombre_v']."<br> Vicario. ". "<br>";
+                echo $_POST['nombre_v']."<br> Vicario. ";
             }
         ?>
 
@@ -123,7 +121,7 @@ echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'
 
       <p style="text-align:justify;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18px;">
           <b>AUTENTICIDAD:<br></b>Se certifica que el sello de la Paroquia  de_________________________________
-            <br>
+            <br><br>
           Y la firma del Párroco P.__________________________________son auténticos.
           <br>
           SELLO
@@ -134,7 +132,7 @@ echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'
          <p style="text-align:justify;margin-left:70px;margin-right:50px;line-height: 20pt; font-size: 18Px;">
          San Vicente, a______________ de ______________ del Dos mil _____________</p>.
 
-           <p style="text-align:right;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 18px;">
+           <p style="text-align:right;margin-left:50px;margin-right:50px;line-height: 20pt; font-size: 17px;">
         <i><small> Parroquia San Antonio de Padua <br>
             Agua Zarca San Antonio km 49 1/2, Carretera a Ilobasco, Cabañas<br>
             E-mail: sanantoniodepaduailob@gmail.com <br>

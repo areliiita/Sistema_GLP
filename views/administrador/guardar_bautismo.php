@@ -39,7 +39,7 @@ $modeloParroquia = new Parroquia();
 
 <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtNombre_parroquia">
+												<select class="mdl-textfield__input" name="txtNombre_parroquia" required="">
 													<option value="" disabled="" selected="">Seleccionar Parroquia de bautismo</option>
 													<?php
 													if ($comunion->parroquia_bautismo !=null) {
@@ -58,7 +58,7 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="date" name="txtFecha_bautismo">
+									<input class="mdl-textfield__input" type="date" name="txtFecha_bautismo" required="">
 										<label >Ingrese fecha de bautismo.</label>
 									</div>
 								</div>
@@ -66,21 +66,21 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_bautizado">
+										<input class="mdl-textfield__input" type="text" name="txtNombre_bautizado" required="">
 										<label class="mdl-textfield__label" >Ingrese nombre de la persona a bautizar.</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="date" name="txtFecha_nacimiento">
+										<input class="mdl-textfield__input" type="date" name="txtFecha_nacimiento" required="">
 										<label >Ingrese fecha de nacimiento..</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_hospital">
+										<input class="mdl-textfield__input" type="text" name="txtNombre_hospital" required="">
 										<label class="mdl-textfield__label">Ingrese el nombre del hospital de nacimiento</label>
 									</div>
 								</div>
@@ -88,30 +88,30 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_de_padre">
-										<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre completo del papá.</label>
+										<input class="mdl-textfield__input" type="text" name="txtNombre_de_padre" required="">
+										<label class="mdl-textfield__label" >Ingrese el nombre completo del papá.</label>
 									</div>
 								</div>
 
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_de_madre">
-										<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre completo de la mamá.</label>
+										<input class="mdl-textfield__input" type="text" name="txtNombre_de_madre" required="">
+										<label class="mdl-textfield__label" >Ingrese el nombre completo de la mamá.</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_padrino">
-										<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre completo del padrino.</label>
+										<input class="mdl-textfield__input" type="text" name="txtNombre_padrino" required="">
+										<label class="mdl-textfield__label">Ingrese el nombre completo del padrino.</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" name="txtNombre_madrina">
-										<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre completo de la madrina..</label>
+										<input class="mdl-textfield__input" type="text" name="txtNombre_madrina" required="">
+										<label class="mdl-textfield__label" >Ingrese el nombre completo de la madrina..</label>
 									</div>
 								</div>
 
@@ -124,14 +124,14 @@ $modeloParroquia = new Parroquia();
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="int" name="txtCodigo_folio">
+										<input class="mdl-textfield__input" type="int" name="txtCodigo_folio" required="">
 										<label class="mdl-textfield__label">Ingrese el codigo de folio</label>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtNombre_de_ministro">
+												<select class="mdl-textfield__input" name="txtNombre_de_ministro" required="">
 													<option value="" disabled="" selected="">Seleccionar Ministro</option>
 													<?php
 													if ($comunion->nombre_ministro !=null) {
@@ -149,18 +149,13 @@ $modeloParroquia = new Parroquia();
 
 									<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input" name="txtHijo">
+												<select class="mdl-textfield__input" name="txtHijo" required="">
 													<option value="" disabled="" selected="">Seleccionar Tipo de Hijo</option>
 													 	    <option value="Hijo Legitimo">Hijo Legitimo</option>
 													 	    <option value="Hijo Ilegitimo">Hijo Ilegitimo</option>
 												</select>
 											</div>
 										</div>
-
-
-
-
-
 								</div>
 
 
@@ -174,4 +169,4 @@ $modeloParroquia = new Parroquia();
 				</div>
 			</div>
 		</div>
-	</section>
+

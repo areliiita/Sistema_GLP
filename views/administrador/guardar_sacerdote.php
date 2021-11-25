@@ -20,60 +20,60 @@
 					<div class="full-width panel-content">
 						<form method="post" action="?c=Sacerdote&a=Guardar">
 							<div class="mdl-grid">
-		<input type="hidden" name="txtIdsacerdote" value="<?php echo $sacerdote->sacerdote; ?>" />
+		<input type="hidden" name="txtIdsacerdote" value="<?php echo $sacerdote->idsacerdote; ?>" />
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" name="txtNombre">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese el nombre .</label>
+				<input class="mdl-textfield__input" type="text" name="txtNombre" required="">
+					<label class="mdl-textfield__label">Ingrese el nombre .</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" type="text" name="txtApellido">
-				<label class="mdl-textfield__label" for="urlCompany">Ingrese los apellidos.</label>
+				<input class="mdl-textfield__input" type="text" name="txtApellido" required="">
+				<label class="mdl-textfield__label">Ingrese los apellidos.</label>
 			</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtCargo">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese el cargo del sacerdote.</label>
+					<input class="mdl-textfield__input" type="text" name="txtCargo" required="">
+					<label class="mdl-textfield__label" >Ingrese el cargo del sacerdote.</label>
+				</div>
+			</div>
+
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			 <input  class="mdl-textfield__input"  type="date" name="txtFecha_nacimiento" required="">
+			   <label>Ingrese fecha de nacimiento </label>
+			</div>
+			</div>
+
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" name="txtDui" required="">
+					<label class="mdl-textfield__label">Ingrese su número de documento de identiedad DUI.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="date" name="txtFecha_nacimiento">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese su fecha de nacimiento.</label>
+					<input class="mdl-textfield__input" type="text" name="txtNacionalidad" required="">
+					<label class="mdl-textfield__label" >Ingrese su nacionalidad.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtDui">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese su número de documento de identiedad DUI.</label>
+					<input class="mdl-textfield__input" type="text" name="txtPeriodo_desde"  required="">
+					<label class="mdl-textfield__label">Periodo desde.</label>
 				</div>
 			</div>
 
 			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtNacionalidad">
-					<label class="mdl-textfield__label" for="urlCompany">Ingrese su nacionalidad.</label>
-				</div>
-			</div>
-
-			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtPeriodo_desde">
-					<label class="mdl-textfield__label" for="urlCompany">Periodo desde.</label>
-				</div>
-			</div>
-
-			<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="text" name="txtPeriodo_hasta">
-					<label class="mdl-textfield__label" for="urlCompany">Periodo hasta.</label>
+					<input class="mdl-textfield__input" type="text" name="txtPeriodo_hasta" required="">
+					<label class="mdl-textfield__label" >Periodo hasta.</label>
 				</div>
 			</div>
 </div>
@@ -86,5 +86,4 @@
 				</div>
 			</div>
 		</div>
-	</section>
 

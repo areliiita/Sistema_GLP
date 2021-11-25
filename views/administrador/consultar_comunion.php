@@ -1,12 +1,12 @@
 <div class="container" >
-	<div class="container-fluid">
+<div class="container-fluid">
 <div class="page-header">
 			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL   DE REGISTROS DE PRIMERAS COMUNIONES</h1>
-			</div>
-		</div>
-		<div class="table-responsive">
-			<table id="employee_data" class="table table-striped table-bordered">
-				<thead>
+ </div>
+ </div>
+<div class="table-responsive">
+			<table id="employee_data" class="table  table-bordered" style="background-color:#EAF2F8;">
+				<thead style="background-color: black; color: white;">
 					<tr>
 											<th class="text-center">N°</th>
 											<th class="text-center">Nombre</th>

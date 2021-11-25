@@ -1,20 +1,20 @@
 <div class="container">
 <div class="container-fluid">
-<div class="page-header">
+			<div class="page-header">
 			  <h1 class="text-titles "><i class="zmdi zmdi-book zmdi-hc-fw"></i> INFORME GENERAL DE REGISTROS DE MATRIMONIO </h1>
 			</div>
 		</div>
-							<div class="table-responsive">
-								<table id="employee_data" class="table table-striped table-bordered">
-									<thead>
+
+								<table id="employee_data" class="table  table-bordered" style="background-color:#EAF2F8;">
+									<thead style="background-color: black; color: white;">
 										<tr>
 											<th class="text-center">N°</th>
-											<th class="text-center">Hora_Matrimonio</th>
+											<th class="text-center">Hora_boda</th>
 											<th class="text-center">Nombre_de_Novio</th>
 											<th class="text-center">Nombre_de_Novia</th>
 											<th class="text-center">Fecha de Matrimonio</th>
 											<th class="text-center">Parroquia</th>
-											<th class="text-center">Codigo de Folio</th>
+											<th class="text-center">Folio</th>
 											<th class="text-center">Padrino</th>
 											<th class="text-center">Madrina</th>
 											<th class="text-center">Editar</th>
@@ -41,7 +41,7 @@
                                         </tr>
 					<?php endforeach; ?></tbody>
 								</table>
-								</div>
+
 	</div>
 	<script>
  $(document).ready(function(){
